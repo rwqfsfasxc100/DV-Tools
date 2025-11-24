@@ -1,11 +1,14 @@
 extends Control
 
 var current_file = ""
+var output_file = "user://save_output.txt"
 
 export var openSave = NodePath("")
 onready var openSaveFile = get_node_or_null(openSave)
 export var openSaveText = NodePath("")
 onready var openSaveTextPath = get_node_or_null(openSaveText)
+export var openTextOutput = NodePath("")
+onready var openTextOutputPath = get_node_or_null(openTextOutput)
 
 
 var password = "FTWOMG"
@@ -25,7 +28,7 @@ func _on_Button_pressed():
 func _on_ConvertButton_pressed():
 	var data = getMetaFromSave(current_file)
 	if data:
-		f.open("user://save.t xt",File.WRITE)
+		f.open(output_file,File.WRITE)
 		f.store_string(JSON.print(data,"\t "))
 		f.close()
 
@@ -39,3 +42,7 @@ func getMetaFromSave(file):
 		return savedState
 	else:
 		return
+
+
+func _on_Output_file_selected():
+	pass # Replace with function body.

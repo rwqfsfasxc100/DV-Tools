@@ -9,6 +9,7 @@ rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 1 )
 openSave = NodePath("VBoxContainer/TabContainer/Save Converters/OpenSaveFile")
 openSaveText = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/LineEdit")
+openTextOutput = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/LineEdit")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 40.0
@@ -36,11 +37,21 @@ margin_right = 776.0
 margin_bottom = 418.0
 rect_min_size = Vector2( 780, 450 )
 popup_exclusive = true
-window_title = "Open a File"
-resizable = true
+window_title = "Open DV Save File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.dv, *.dvb ; Delta-V Save File" )
+show_hidden_files = true
+
+[node name="OpenOutputFIle" type="FileDialog" parent="VBoxContainer/TabContainer/Save Converters"]
+margin_left = -4.0
+margin_top = -32.0
+margin_right = 776.0
+margin_bottom = 418.0
+rect_min_size = Vector2( 780, 450 )
+popup_exclusive = true
+window_title = "Select Save Location"
+access = 2
 show_hidden_files = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Save Converters"]
@@ -84,16 +95,32 @@ margin_right = 1016.0
 margin_bottom = 24.0
 text = "OPEN SAVE FILE"
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 46.0
 margin_right = 1016.0
-margin_bottom = 60.0
+margin_bottom = 70.0
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 837.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 841.0
+margin_right = 1016.0
+margin_bottom = 24.0
+text = "SELECT TEXT OUTPUT FILE"
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 74.0
+margin_right = 1016.0
+margin_bottom = 88.0
 
 [node name="Button" type="Button" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 64.0
+margin_top = 92.0
 margin_right = 1016.0
-margin_bottom = 84.0
-text = "Convert Save"
+margin_bottom = 112.0
+text = "Convert Save to Text"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer"]
 margin_top = 284.0
@@ -117,6 +144,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [connection signal="file_selected" from="VBoxContainer/TabContainer/Save Converters/OpenSaveFile" to="." method="_on_FileDialog_file_selected"]
+[connection signal="file_selected" from="VBoxContainer/TabContainer/Save Converters/OpenOutputFIle" to="." method="_on_Output_file_selected"]
 [connection signal="text_changed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_LineEdit_text_changed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/Button" to="." method="_on_ConvertButton_pressed"]
