@@ -8,8 +8,12 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 1 )
 openSave = NodePath("VBoxContainer/TabContainer/Save Converters/OpenSaveFile")
+saveBox = NodePath("VBoxContainer/TabContainer/Save Converters/OpenOutputFIle")
 openSaveText = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/LineEdit")
 openTextOutput = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/LineEdit2")
+tree_path = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/VBoxContainer/PanelContainer/Tree")
+convert_to_text_btn = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/ConvertToText")
+visualize_tree = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/TreeView")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 40.0
@@ -37,7 +41,7 @@ margin_right = 776.0
 margin_bottom = 418.0
 rect_min_size = Vector2( 780, 450 )
 popup_exclusive = true
-window_title = "Open DV Save File"
+window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.dv, *.dvb ; Delta-V Save File" )
@@ -52,6 +56,7 @@ rect_min_size = Vector2( 780, 450 )
 popup_exclusive = true
 window_title = "Select Save Location"
 access = 2
+filters = PoolStringArray( "*.json" )
 show_hidden_files = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Save Converters"]
@@ -61,14 +66,13 @@ rect_min_size = Vector2( 1016, 564 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer"]
 margin_right = 1016.0
-margin_bottom = 280.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer"]
 margin_right = 1016.0
-margin_bottom = 280.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -105,16 +109,19 @@ size_flags_horizontal = 3
 margin_left = 841.0
 margin_right = 1016.0
 margin_bottom = 52.0
+size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 margin_right = 175.0
-margin_bottom = 20.0
+margin_bottom = 24.0
+size_flags_vertical = 3
 text = "OPEN SAVE FILE"
 
 [node name="Button2" type="Button" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 24.0
+margin_top = 28.0
 margin_right = 175.0
-margin_bottom = 44.0
+margin_bottom = 52.0
+size_flags_vertical = 3
 text = "SELECT TEXT OUTPUT FILE"
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer"]
@@ -126,10 +133,22 @@ margin_bottom = 88.0
 margin_top = 92.0
 margin_right = 1016.0
 margin_bottom = 112.0
+text = "Load Save"
+
+[node name="ConvertToText" type="Button" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 116.0
+margin_right = 1016.0
+margin_bottom = 136.0
 text = "Convert Save to Text"
 
+[node name="TreeView" type="Button" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 140.0
+margin_right = 1016.0
+margin_bottom = 160.0
+text = "Visualize save"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer"]
-margin_top = 284.0
+margin_top = 164.0
 margin_right = 1016.0
 margin_bottom = 564.0
 size_flags_horizontal = 3
@@ -137,7 +156,7 @@ size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/TabContainer/Save Converters/VBoxContainer/VBoxContainer"]
 margin_right = 1016.0
-margin_bottom = 280.0
+margin_bottom = 400.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -145,12 +164,16 @@ size_flags_vertical = 3
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 1009.0
-margin_bottom = 273.0
+margin_bottom = 393.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [connection signal="file_selected" from="VBoxContainer/TabContainer/Save Converters/OpenSaveFile" to="." method="_on_FileDialog_file_selected"]
 [connection signal="file_selected" from="VBoxContainer/TabContainer/Save Converters/OpenOutputFIle" to="." method="_on_Output_file_selected"]
 [connection signal="text_changed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/LineEdit" to="." method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/LineEdit2" to="." method="_on_LineEdit2_text_changed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/Button" to="." method="_on_ConvertButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/ConvertToText" to="." method="_on_ConvertToText_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/TreeView" to="." method="_on_TreeView_pressed"]
