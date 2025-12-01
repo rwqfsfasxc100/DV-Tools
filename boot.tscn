@@ -1,19 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://boot.gd" type="Script" id=1]
+[ext_resource path="res://equipment_driver/Add Equipment Items.gd" type="Script" id=2]
+[ext_resource path="res://equipment_driver/Equipment Tags.gd" type="Script" id=3]
+[ext_resource path="res://equipment_driver/Modify Ship Weapon Templates.gd" type="Script" id=4]
+[ext_resource path="res://equipment_driver/Aux Units.gd" type="Script" id=5]
+[ext_resource path="res://equipment_driver/Add Slots.gd" type="Script" id=6]
+[ext_resource path="res://equipment_driver/Slot Tags.gd" type="Script" id=7]
+[ext_resource path="res://equipment_driver/Slot Order.gd" type="Script" id=8]
+[ext_resource path="res://equipment_driver/Modify Ship Weapons.gd" type="Script" id=9]
+[ext_resource path="res://equipment_driver/Add Weapons.gd" type="Script" id=10]
+[ext_resource path="res://equipment_driver/Define Nodes.gd" type="Script" id=11]
+[ext_resource path="res://equipment_driver/Thrusters.gd" type="Script" id=12]
+[ext_resource path="res://equipment_driver/Modify Stats.gd" type="Script" id=13]
+[ext_resource path="res://equipment_driver/Register Nodes.gd" type="Script" id=14]
+[ext_resource path="res://equipment_driver/Modify Weapon Templates.gd" type="Script" id=15]
+[ext_resource path="res://equipment_driver/Modify Weapons.gd" type="Script" id=16]
 
-[node name="Save2Text" type="Control"]
+[node name="MAIN" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1024, 600 )
-script = ExtResource( 1 )
-openSave = NodePath("VBoxContainer/TabContainer/Save Converters/OpenSaveFile")
-saveBox = NodePath("VBoxContainer/TabContainer/Save Converters/OpenOutputFIle")
-openSaveText = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/LineEdit")
-openTextOutput = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/LineEdit2")
-tree_path = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/VBoxContainer/PanelContainer/Tree")
-convert_to_text_btn = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/ConvertToText")
-visualize_tree = NodePath("VBoxContainer/TabContainer/Save Converters/VBoxContainer/HBoxContainer/VBoxContainer/TreeView")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 40.0
@@ -25,14 +32,458 @@ margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tab_align = 0
 
-[node name="Save Converters" type="Tabs" parent="VBoxContainer/TabContainer"]
+[node name="EquipmentDriver" type="Tabs" parent="VBoxContainer/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver"]
+margin_left = -5.0
+margin_right = 1019.0
+margin_bottom = 564.0
+rect_min_size = Vector2( 1024, 564 )
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 60.0
+tab_align = 0
+
+[node name="Equipment" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment"]
+margin_left = -5.0
+margin_right = 1019.0
+margin_bottom = 530.0
+rect_min_size = Vector2( 1024, 530 )
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer"]
+margin_right = 1026.0
+margin_bottom = 536.0
+tab_align = 0
+
+[node name="Add Equipment Items" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+tab_align = 0
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Equipment Tags" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+tab_align = 0
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Equipment Tags"]
+margin_right = 1000.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Slots" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Slots"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1016, 530 )
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Slots/VBoxContainer"]
+margin_right = 8.0
+margin_bottom = 36.0
+tab_align = 0
+
+[node name="Add Slots" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Slots/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Slots/VBoxContainer/TabContainer/Add Slots"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Slot Order" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Slots/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Slots/VBoxContainer/TabContainer/Slot Order"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Slot Tags" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Slots/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Slots/VBoxContainer/TabContainer/Slot Tags"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Aux Units and Thrusters" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Aux Units and Thrusters"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1016, 530 )
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Aux Units and Thrusters/VBoxContainer"]
+margin_right = 8.0
+margin_bottom = 36.0
+tab_align = 0
+
+[node name="Aux Units" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Aux Units and Thrusters/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 5 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Aux Units and Thrusters/VBoxContainer/TabContainer/Aux Units"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Thrusters" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Aux Units and Thrusters/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 12 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Aux Units and Thrusters/VBoxContainer/TabContainer/Thrusters"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Ship Modifications" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 24.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Ship Modifications"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1016, 530 )
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Ship Modifications/VBoxContainer"]
+margin_right = 8.0
+margin_bottom = 36.0
+tab_align = 0
+
+[node name="Define Nodes" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Ship Modifications/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Ship Modifications/VBoxContainer/TabContainer/Define Nodes"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Register Nodes" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Ship Modifications/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 14 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Ship Modifications/VBoxContainer/TabContainer/Register Nodes"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Modify Stats" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Ship Modifications/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 13 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Ship Modifications/VBoxContainer/TabContainer/Modify Stats"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Weapon Slots" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 24.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1016, 530 )
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer"]
+margin_right = 1016.0
+margin_bottom = 60.0
+tab_align = 0
+
+[node name="Add Weapons" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 10 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer/Add Weapons"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Modify Weapon Templates" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 15 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer/Modify Weapon Templates"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Modify Weapons" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 16 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer/Modify Weapons"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Modify Ship Weapon Templates" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer/Modify Ship Weapon Templates"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Modify Ship Weapons" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+script = ExtResource( 9 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Weapon Slots/VBoxContainer/TabContainer/Modify Ship Weapons"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="MenuDriver" type="Tabs" parent="VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/MenuDriver"]
+margin_left = -5.0
+margin_right = 1019.0
+margin_bottom = 564.0
+rect_min_size = Vector2( 1024, 564 )
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/MenuDriver/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 60.0
+tab_align = 0
+
+[node name="Title Screen" type="Tabs" parent="VBoxContainer/TabContainer/MenuDriver/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/MenuDriver/VBoxContainer/TabContainer/Title Screen"]
+margin_left = -5.0
+margin_right = 1019.0
+margin_bottom = 530.0
+rect_min_size = Vector2( 1024, 530 )
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/MenuDriver/VBoxContainer/TabContainer/Title Screen/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 60.0
+tab_align = 0
+
+[node name="Save Options" type="Tabs" parent="VBoxContainer/TabContainer/MenuDriver/VBoxContainer/TabContainer/Title Screen/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+tab_align = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/MenuDriver/VBoxContainer/TabContainer/Title Screen/VBoxContainer/TabContainer/Save Options"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="MineralDriver" type="Tabs" parent="VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/MineralDriver"]
+margin_left = -5.0
+margin_right = 1019.0
+margin_bottom = 564.0
+rect_min_size = Vector2( 1024, 564 )
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/MineralDriver/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 60.0
+tab_align = 0
+
+[node name="Add Minerals" type="Tabs" parent="VBoxContainer/TabContainer/MineralDriver/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 1018, 500 )
+tab_align = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/MineralDriver/VBoxContainer/TabContainer/Add Minerals"]
+margin_right = 1024.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 1024, 500 )
+
+[node name="Save Converters" type="Tabs" parent="VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 1 )
+openSave = NodePath("OpenSaveFile")
+saveBox = NodePath("OpenOutputFIle")
+openSaveText = NodePath("VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/LineEdit")
+openTextOutput = NodePath("VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/LineEdit2")
+tree_path = NodePath("VBoxContainer/VBoxContainer/PanelContainer/Tree")
+convert_to_text_btn = NodePath("VBoxContainer/HBoxContainer/VBoxContainer/ConvertToText")
+visualize_tree = NodePath("VBoxContainer/HBoxContainer/VBoxContainer/TreeView")
 
 [node name="OpenSaveFile" type="FileDialog" parent="VBoxContainer/TabContainer/Save Converters"]
 margin_left = -4.0
