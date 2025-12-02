@@ -65,14 +65,14 @@ display_f = NodePath("ScrollContainer/VBoxContainer")
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/DriverReferences"]
 margin_right = 684.0
-margin_bottom = 150.0
+margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.172549, 0.164706, 0.196078, 1 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/DriverReferences"]
 margin_right = 684.0
-margin_bottom = 150.0
+margin_bottom = 200.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/DriverReferences/ScrollContainer"]
 margin_right = 684.0

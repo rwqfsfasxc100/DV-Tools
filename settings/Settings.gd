@@ -41,13 +41,18 @@ func save_config():
 	c.save(cfg_file)
 
 func get_value(section, setting):
+	var val = null
 	c.load(cfg_file)
-	var val = c.get_value(section,setting)
+	var sects = c.get_sections()
+	if section in sects:
+		var lf = c.get_section_keys(section)
+		if setting in lf:
+			val = c.get_value(section,setting)
 	return val
 
 func set_value(section,setting,value):
-	if section in cfg:
-		if setting in cfg[section]:
-			cfg[section][setting] = value
-			save_config()
-			emit_signal("settings_changed",cfg)
+	if not section in cfg:
+		cfg.merge({section:{}})
+	cfg[section][setting] = value
+	save_config()
+	emit_signal("settings_changed",cfg)

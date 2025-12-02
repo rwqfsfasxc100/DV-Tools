@@ -19,20 +19,31 @@ margin_right = 286.0
 margin_bottom = 91.0
 size_flags_horizontal = 3
 
-[node name="FilePath" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_right = 286.0
 margin_bottom = 24.0
+
+[node name="FilePath" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 204.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="OpenFile" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 208.0
+margin_right = 286.0
+margin_bottom = 24.0
+text = "Select File"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 28.0
 margin_right = 286.0
 margin_bottom = 48.0
 
-[node name="OpenFile" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="LoadFile" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 92.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
-text = "Open File"
+text = "Load File"
 
 [node name="CloseFile" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 96.0
@@ -97,22 +108,54 @@ margin_bottom = 391.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
 margin_right = 286.0
 margin_bottom = 391.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DeleteSure" type="ConfirmationDialog" parent="VBoxContainer/MarginContainer"]
+[node name="Dialog" type="Control" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 293.0
+margin_bottom = 493.0
+mouse_filter = 2
+
+[node name="DeleteSure" type="ConfirmationDialog" parent="Dialog"]
+margin_top = 95.0
 margin_right = 286.0
-margin_bottom = 391.0
+margin_bottom = 486.0
 rect_min_size = Vector2( 200, 105 )
 popup_exclusive = true
 window_title = ""
 
-[node name="NewEntry" type="ConfirmationDialog" parent="VBoxContainer/MarginContainer"]
+[node name="NewEntry" type="ConfirmationDialog" parent="Dialog"]
+margin_top = 95.0
 margin_right = 286.0
-margin_bottom = 391.0
+margin_bottom = 486.0
 rect_min_size = Vector2( 200, 105 )
 popup_exclusive = true
 window_title = ""
+
+[node name="OpenFile" type="FileDialog" parent="Dialog"]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 427.0
+margin_bottom = 516.0
+rect_min_size = Vector2( 500, 105 )
+popup_exclusive = true
+window_title = "Open a File"
+mode = 0
+access = 2
+show_hidden_files = true
+
+[node name="ErrorMSG" type="AcceptDialog" parent="Dialog"]
+margin_right = 83.0
+margin_bottom = 58.0
+popup_exclusive = true
+window_title = "Failed to load"
+
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer/HBoxContainer3/FilePath" to="." method="_on_FilePath_text_changed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer3/OpenFile" to="." method="show_open_file"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/LoadFile" to="." method="load_driver_file"]
+[connection signal="file_selected" from="Dialog/OpenFile" to="." method="open_driver_file"]
