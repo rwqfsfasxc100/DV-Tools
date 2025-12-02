@@ -57,44 +57,12 @@ func _on_Output_file_selected(path):
 	openSaveTextPath.text = path
 	saveCFG("settings", "output_file_path", path)
 
-
-
-var config = {
-	"settings":{
-		"output_file_path":"user://save_output.json",
-		"save_file_path":"",
-	}
-}
-
-var cfg = ConfigFile.new()
-
-func loadCFG():
-	var reset = false
-	if not f.file_exists(config_file):
-		reset = true
-	cfg.load(config_file)
-	if reset:
-		for i in config:
-			for t in config[i]:
-				cfg.set_value(i,t,config[i][t])
-	for i in config:
-		for t in config[i]:
-			var val = cfg.get_value(i,t,config[i][t])
-			
-			cfg.set_value(i,t,val)
-	cfg.save(config_file)
-
-func getCFG(section: String, setting: String):
-	cfg.load(config_file)
-	return cfg.get_value(section, setting,"")
-
-func saveCFG(section: String, setting: String, value):
-	cfg.load(config_file)
-	cfg.set_value(section, setting, value)
-	cfg.save(config_file)
+func saveCFG(section,setting,value):
+	Settings.set_value(section,setting,value)
+func getCFG(section,setting):
+	return Settings.get_value(section,setting)
 
 func _ready():
-	loadCFG()
 	output_file = ProjectSettings.globalize_path(getCFG("settings","output_file_path"))
 	openTextOutputPath.text = output_file
 	current_file = ProjectSettings.globalize_path(getCFG("settings","save_file_path"))

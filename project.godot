@@ -16,6 +16,21 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="hevs_dV_tools"
 config/icon="res://icon.png"
 
+[autoload]
+
+Settings="*res://settings/Settings.gd"
+EquipmentDriver="*res://EquipmentDriver.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
+
+[display]
+
+window/size/height=650
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
