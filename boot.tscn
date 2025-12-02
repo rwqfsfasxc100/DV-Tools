@@ -16,7 +16,7 @@
 [ext_resource path="res://equipment_driver/Register Nodes.gd" type="Script" id=14]
 [ext_resource path="res://equipment_driver/Modify Weapon Templates.gd" type="Script" id=15]
 [ext_resource path="res://equipment_driver/Modify Weapons.gd" type="Script" id=16]
-[ext_resource path="res://equipment_driver/parts/EquipmentButton.gd" type="Script" id=17]
+[ext_resource path="res://driver_panel/DriverPanel.tscn" type="PackedScene" id=17]
 [ext_resource path="res://equipment_driver/parts/SlotTypeOption.gd" type="Script" id=18]
 [ext_resource path="res://equipment_driver/parts/PropertyButton.gd" type="Script" id=19]
 [ext_resource path="res://config_icon.png" type="Texture" id=20]
@@ -105,119 +105,7 @@ margin_right = 1024.0
 margin_bottom = 500.0
 size_flags_vertical = 3
 
-[node name="DriverPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer"]
-margin_right = 300.0
-margin_bottom = 500.0
-rect_min_size = Vector2( 300, 0 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 293.0
-margin_bottom = 493.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer"]
-margin_right = 286.0
-margin_bottom = 91.0
-size_flags_horizontal = 3
-
-[node name="FilePath" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer"]
-margin_right = 286.0
-margin_bottom = 24.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer"]
-margin_top = 28.0
-margin_right = 286.0
-margin_bottom = 48.0
-
-[node name="OpenFile" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 92.0
-margin_bottom = 20.0
-size_flags_horizontal = 3
-text = "Open File"
-
-[node name="CloseFile" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 96.0
-margin_right = 189.0
-margin_bottom = 20.0
-size_flags_horizontal = 3
-text = "Close File"
-
-[node name="SaveFile" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 193.0
-margin_right = 286.0
-margin_bottom = 20.0
-size_flags_horizontal = 3
-text = "Save File"
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer"]
-margin_top = 52.0
-margin_right = 286.0
-margin_bottom = 56.0
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer"]
-margin_top = 60.0
-margin_right = 286.0
-margin_bottom = 91.0
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 183.0
-margin_bottom = 31.0
-size_flags_horizontal = 3
-text = "
-File Contents"
-
-[node name="New" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 187.0
-margin_right = 227.0
-margin_bottom = 31.0
-text = "New"
-
-[node name="Delete" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 231.0
-margin_right = 286.0
-margin_bottom = 31.0
-disabled = true
-text = "Delete"
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer"]
-margin_top = 95.0
-margin_right = 286.0
-margin_bottom = 486.0
-size_flags_vertical = 3
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/MarginContainer"]
-margin_right = 286.0
-margin_bottom = 391.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 0.172549, 0.164706, 0.196078, 1 )
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/MarginContainer"]
-margin_right = 286.0
-margin_bottom = 391.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/MarginContainer/ScrollContainer"]
-margin_right = 286.0
-margin_bottom = 391.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Button" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer2"]
-margin_right = 286.0
-margin_bottom = 20.0
-text = "SYSTEM_EXAMPLE"
-align = 0
-script = ExtResource( 17 )
-
-[node name="DeleteSure" type="ConfirmationDialog" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/MarginContainer"]
-margin_right = 300.0
-margin_bottom = 391.0
-rect_min_size = Vector2( 300, 105 )
-popup_exclusive = true
-window_title = ""
+[node name="DriverPanel" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer" instance=ExtResource( 17 )]
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer"]
 margin_left = 304.0
