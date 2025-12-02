@@ -170,26 +170,29 @@ var file = File.new()
 func load_driver_file():
 	var r = EquipmentDriver.load_driver(current_driver_file,driver_mode)
 	if r != OK:
-		match r:
-			ERR_DOES_NOT_EXIST:
-				error_message.dialog_text = "Error: driver method does not exist"
-			ERR_FILE_CANT_OPEN:
-				error_message.dialog_text = "Error: file does not exist"
-			ERR_FILE_NO_PERMISSION:
-				error_message.dialog_text = "Error: unsaved changes. Save and close the current driver before continuing."
-		error_message.popup_centered()
+		handle_errors(r)
 	else:
 		driver_data = EquipmentDriver.get_driver(driver_mode)
-		
+		clear_driver()
+		process_driver()
 
 func process_driver():
 	
 	
 	pass
 
+func handle_errors(err):
+	match err:
+		ERR_DOES_NOT_EXIST:
+			error_message.dialog_text = "Error: driver method does not exist"
+		ERR_FILE_CANT_OPEN:
+			error_message.dialog_text = "Error: file does not exist"
+		ERR_FILE_NO_PERMISSION:
+			error_message.dialog_text = "Error: unsaved changes. Save and close the current driver before continuing."
+	error_message.popup_centered()
+
 func clear_driver():
 	if driver_data.get("should_save"):
-		error_message.dialog_text = "Error: unsaved changes. Save and close the current driver before continuing."
-		error_message.popup_centered()
+		handle_errors(ERR_FILE_NO_PERMISSION)
 	else:
 		pass

@@ -145,6 +145,7 @@ margin_bottom = 516.0
 rect_min_size = Vector2( 500, 105 )
 popup_exclusive = true
 window_title = "Open a File"
+mode_overrides_title = false
 mode = 0
 access = 2
 show_hidden_files = true
