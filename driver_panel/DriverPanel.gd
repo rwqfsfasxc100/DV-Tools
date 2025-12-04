@@ -33,6 +33,11 @@ onready var close_file = get_node_or_null(cf)
 export var sf = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/SaveFile")
 onready var save_file = get_node_or_null(sf)
 
+export var sl = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer")
+onready var system_list = get_node_or_null(sl)
+
+const equipment_button = preload("res://driver_panel/EquipmentButton.tscn")
+
 export var dofc = NodePath("Dialog/OpenFile")
 onready var open_file_dialog = get_node_or_null(dofc)
 
@@ -142,7 +147,7 @@ func show_open_file():
 
 func _ready():
 	var open_file_filter = driver_mode + ".gd ; " + hints.get(driver_mode)
-	
+	EquipmentDriver.register_panel(driver_mode,self)
 	match driver_mode:
 		"AUX_POWER_SLOT":
 			pass
@@ -172,14 +177,33 @@ func load_driver_file():
 	if r != OK:
 		handle_errors(r)
 	else:
-		driver_data = EquipmentDriver.get_driver(driver_mode)
-		clear_driver()
+		open_driver()
 		process_driver()
+
+var current_systems = []
 
 func process_driver():
 	
-	
-	pass
+	for i in driver_data:
+		var data = driver_data[i]
+		var system = data.get("system",null)
+		if system == null:
+			driver_data.erase(i)
+			continue
+		if system in current_systems:
+			continue
+		var btn = equipment_button.instance()
+		btn.display_system_name = system
+		btn.data = data.duplicate(true)
+		btn.mode = driver_mode
+		btn.connect("update_display",EquipmentDriver,"update_display_content")
+		current_systems.append(system)
+		system_list.add_child(btn)
+
+
+func clear_button_list():
+	for i in system_list.get_children():
+		i.queue_free()
 
 func handle_errors(err):
 	match err:
@@ -191,8 +215,14 @@ func handle_errors(err):
 			error_message.dialog_text = "Error: unsaved changes. Save and close the current driver before continuing."
 	error_message.popup_centered()
 
+func open_driver():
+	current_systems = []
+	driver_data = EquipmentDriver.get_driver(driver_mode)
+
 func clear_driver():
 	if driver_data.get("should_save"):
 		handle_errors(ERR_FILE_NO_PERMISSION)
+		return false
 	else:
-		pass
+		EquipmentDriver.clear_driver(driver_mode)
+		return true

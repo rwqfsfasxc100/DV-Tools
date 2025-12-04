@@ -88,7 +88,7 @@ func clear_driver(driver_mode):
 		if driver_state[driver_mode]["should_save"]:
 			return ERR_FILE_NO_PERMISSION
 		else:
-			driver_state[driver_mode]["entries"].clear()
+			driver_state[driver_mode] = default_state[driver_mode].duplicate(true)
 			return OK
 
 func _ready():
@@ -101,7 +101,9 @@ func load_driver(path,driver_mode):
 		return ERR_DOES_NOT_EXIST
 	if driver_state[driver_mode]["should_save"]:
 		return ERR_FILE_NO_PERMISSION
-	clear_driver(driver_mode)
+	var c = clear_driver(driver_mode)
+	if c != OK:
+		return c
 	var data = load(path).get_script_constant_map()
 	match driver_mode:
 		"ADD_EQUIPMENT_ITEMS":
@@ -152,12 +154,53 @@ func load_driver(path,driver_mode):
 			
 		"SHIP_NODE_MODIFY":
 			pass
-			
+	emit_signal("driver_updated",driver_mode)
 	return OK
 
+var panels = {}
+func register_panel(mode,panel):
+	if mode in panels:
+		panels[mode] = panel
+	else:
+		panels.merge({mode:panel})
 
+signal system_selection(mode,system)
+func change_system(mode,system):
+	emit_signal("system_selection",mode,system)
+
+signal property_value_set(mode,system,property,to)
+func set_value(mode,system,property,to):
+	var ds = driver_state[mode]["entries"]
+	if system in ds:
+		pass
+	else:
+		ds.merge({system:{}})
+	ds = ds[system]
+	if property in ds:
+		ds[property] = to
+	else:
+		ds.merge({property:to})
+	emit_signal("property_value_set",mode,system,property,to)
+
+signal driver_item_updated(driver_mode,data,system)
+signal driver_updated(driver_mode)
+
+func update_display_content(data,mode,system):
+	emit_signal("driver_item_updated",mode,data,system)
 
 func get_driver(driver):
 	if driver in driver_state:
 		return driver_state[driver]["entries"]
 	return {}
+
+func get_driver_system(driver,system):
+	if driver in driver_state:
+		if system in driver_state[driver]["entries"]:
+			return driver_state[driver]["entries"][system]
+	return null
+func get_driver_property(driver,system,property):
+	if driver in driver_state:
+		if system in driver_state[driver]["entries"]:
+			if property in driver_state[driver]["entries"][system]:
+				return driver_state[driver]["entries"][system][property]
+	return null

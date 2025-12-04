@@ -1,5 +1,26 @@
 extends OptionButton
 
+export (String, \
+"ADD_EQUIPMENT_ITEMS", \
+"ADD_EQUIPMENT_SLOTS", \
+"EQUIPMENT_TAGS", \
+"SLOT_ORDER", \
+"SLOT_TAGS", \
+"WEAPONSLOT_ADD", \
+"WEAPONSLOT_MODIFY_TEMPLATES", \
+"WEAPONSLOT_MODIFY", \
+"WEAPONSLOT_SHIP_TEMPLATES", \
+"WEAPONSLOT_SHIP_MODIFY", \
+"AUX_POWER_SLOT", \
+"MODIFY_INTERNALS", \
+"NODE_DEFINITIONS", \
+"SHIP_NODE_REGISTER", \
+"SHIP_NODE_MODIFY" \
+) var driver_mode = "ADD_EQUIPMENT_ITEMS"
+
+var system:String = ""
+export (String) var property = "system"
+
 export (String,"slot","equipment","hardpoint","alignments") var list_type = "slot"
 
 export var vanilla_slot_types = [
@@ -78,11 +99,38 @@ var slot_types = []
 
 func _ready():
 	Settings.connect("settings_changed",self,"reset_options")
+	EquipmentDriver.connect("driver_item_updated",self,"driver_item_reset")
+	EquipmentDriver.connect("driver_updated",self,"driver_reset")
+	EquipmentDriver.connect("system_selection",self,"change_system")
 	connect("item_selected",self,"item_selected")
 	connect("item_focused",self,"item_selected")
 	fetch()
 
 onready var last_selected_drivers = Settings.get_value("drivers","references")
+
+func change_system(driver,sys):
+	if driver != driver_mode:
+		return
+	system = sys
+	
+
+func driver_reset(data):
+	
+	if data != driver_mode:
+		return
+	var val = EquipmentDriver.get_driver_property(driver_mode,system,property)
+	if val:
+		pass
+	else:
+		item_selected(0)
+func driver_item_reset(mode,dict,sys):
+	var pos = 0
+	if property in dict:
+		var d = get_data()
+		var p = dict[property]
+		if p in d:
+			pos = d.find(p)
+	select(pos)
 
 func reset_options(data):
 	var value = data.get("drivers",{}).get("references",[])
@@ -93,11 +141,7 @@ func reset_options(data):
 		
 
 func item_selected(i):
-	var arr = get_data()
-	var selection = arr[i]
-	var line = get_parent().get_node_or_null("LineEdit")
-	if line:
-		line.text = selection
+	EquipmentDriver.set_value(driver_mode,system,property,get_data()[i])
 
 func get_data():
 	var arr = []

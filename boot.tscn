@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://boot.gd" type="Script" id=1]
 [ext_resource path="res://equipment_driver/Add Equipment Items.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://equipment_driver/parts/PropertyButton.gd" type="Script" id=19]
 [ext_resource path="res://config_icon.png" type="Texture" id=20]
 [ext_resource path="res://settings/SettingsMenu.tscn" type="PackedScene" id=21]
+[ext_resource path="res://driver_panel/InputHandle.gd" type="Script" id=22]
 
 [node name="MAIN" type="Control"]
 margin_right = 40.0
@@ -176,6 +177,8 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "SYSTEM_EXAMPLE"
 align = 2
+script = ExtResource( 22 )
+string_default = "SYSTEM_EXAMPLE"
 
 [node name="Equipment Type" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer"]
 margin_top = 28.0
@@ -188,6 +191,7 @@ margin_right = 288.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 script = ExtResource( 18 )
+property = "equipment_type"
 list_type = "equipment"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer/Equipment Type"]
@@ -197,6 +201,8 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "EQUIPMENT_MASS_DRIVERS"
 align = 2
+script = ExtResource( 22 )
+property = "equipment_type"
 
 [node name="Slot Type" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer"]
 margin_top = 56.0
@@ -209,6 +215,7 @@ margin_right = 288.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 script = ExtResource( 18 )
+property = "slot_type"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer/Slot Type"]
 margin_left = 292.0
@@ -217,6 +224,8 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "HARDPOINT"
 align = 2
+script = ExtResource( 22 )
+property = "slot_type"
 
 [node name="Num val" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer"]
 margin_top = 84.0
@@ -232,6 +241,8 @@ min_value = -1.0
 max_value = inf
 value = -1.0
 align = 2
+script = ExtResource( 22 )
+property = "num_val"
 
 [node name="DriverPanel" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer" instance=ExtResource( 17 )]
 margin_left = 724.0
