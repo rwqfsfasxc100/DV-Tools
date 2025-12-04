@@ -116,7 +116,7 @@ margin_bottom = 493.0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer"]
 margin_right = 692.0
-margin_bottom = 760.0
+margin_bottom = 784.0
 rect_min_size = Vector2( 692, 486 )
 columns = 2
 
@@ -128,6 +128,8 @@ text = "System Name:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../System2/LineEdit")
+string_default = "SYSTEM_EXAMPLE"
 
 [node name="System2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
@@ -152,6 +154,10 @@ text = "Equipment Type:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Equipment Type2/LineEdit")
+selector = NodePath("../Equipment Type2/SlotTypeOption")
+property = "equipment_type"
+string_default = "EQUIPMENT_MASS_DRIVERS"
 
 [node name="Equipment Type2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
@@ -183,6 +189,10 @@ text = "Slot Type:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Slot Type2/LineEdit")
+selector = NodePath("../Slot Type2/SlotTypeOption")
+property = "slot_type"
+string_default = "HARDPOINT"
 
 [node name="Slot Type2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
@@ -213,6 +223,9 @@ text = "Numerical Value:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Num val/SpinBox")
+property = "num_val"
+property_type = "int"
 
 [node name="Num val" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
@@ -239,6 +252,9 @@ text = "Capability Lock:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Capability2/CheckButton")
+property = "capability_lock"
+property_type = "bool"
 
 [node name="Capability2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
@@ -261,6 +277,8 @@ text = "Name Override:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Name Override2/LineEdit")
+property = "name_override"
 
 [node name="Name Override2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
@@ -277,114 +295,160 @@ size_flags_horizontal = 3
 [node name="Description" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_top = 184.0
 margin_right = 181.0
-margin_bottom = 256.0
+margin_bottom = 208.0
 rect_min_size = Vector2( 121, 24 )
 text = "Description:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Description2/LineEdit")
+property = "description"
 
 [node name="Description2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
 margin_top = 184.0
 margin_right = 692.0
-margin_bottom = 256.0
+margin_bottom = 208.0
 alignment = 1
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Description2"]
-margin_right = 507.0
+visible = false
+margin_right = 251.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 0, 72 )
 size_flags_horizontal = 3
 highlight_all_occurrences = true
 
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Description2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+align = 2
+
 [node name="Manual" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 260.0
+margin_top = 212.0
 margin_right = 181.0
-margin_bottom = 332.0
+margin_bottom = 236.0
 rect_min_size = Vector2( 121, 24 )
 text = "Manual:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Manual2/LineEdit")
+property = "manual"
 
 [node name="Manual2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 260.0
+margin_top = 212.0
 margin_right = 692.0
-margin_bottom = 332.0
+margin_bottom = 236.0
 alignment = 1
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Manual2"]
-margin_right = 507.0
+visible = false
+margin_right = 251.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 0, 72 )
 size_flags_horizontal = 3
 highlight_all_occurrences = true
 
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Manual2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+align = 2
+
 [node name="Specs" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 336.0
+margin_top = 240.0
 margin_right = 181.0
-margin_bottom = 408.0
+margin_bottom = 264.0
 rect_min_size = Vector2( 121, 24 )
 text = "Specs:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Specs2/LineEdit")
+property = "specs"
 
 [node name="Specs2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 336.0
+margin_top = 240.0
 margin_right = 692.0
-margin_bottom = 408.0
+margin_bottom = 264.0
 alignment = 1
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Specs2"]
-margin_right = 507.0
+visible = false
+margin_right = 251.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 0, 72 )
 size_flags_horizontal = 3
 highlight_all_occurrences = true
 
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Specs2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+align = 2
+
 [node name="Price" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 412.0
+margin_top = 268.0
 margin_right = 181.0
-margin_bottom = 436.0
+margin_bottom = 292.0
 rect_min_size = Vector2( 121, 24 )
 text = "Price:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Price2/SpinBox")
+slider = NodePath("../Price2/HSlider")
+property = "price"
+property_type = "int"
+int_default = 0
 
 [node name="Price2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 412.0
+margin_top = 268.0
 margin_right = 692.0
-margin_bottom = 436.0
+margin_bottom = 292.0
 alignment = 1
 
+[node name="HSlider" type="HSlider" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Price2"]
+margin_right = 251.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1e+07
+allow_greater = true
+
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Price2"]
+margin_left = 255.0
 margin_right = 507.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-max_value = inf
+max_value = 1e+07
+allow_greater = true
 align = 2
 
 [node name="Test Protocol" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 440.0
+margin_top = 296.0
 margin_right = 181.0
-margin_bottom = 464.0
+margin_bottom = 320.0
 rect_min_size = Vector2( 121, 24 )
 text = "Test Protocol:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Test Protocol2/LineEdit")
+selector = NodePath("../Test Protocol2/LineEdit")
+property = "test_protocol"
+string_default = "fire"
 
 [node name="Test Protocol2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 440.0
+margin_top = 296.0
 margin_right = 692.0
-margin_bottom = 464.0
+margin_bottom = 320.0
 alignment = 1
 
 [node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Test Protocol2"]
@@ -401,20 +465,23 @@ text = "fire"
 align = 2
 
 [node name="Default" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 468.0
+margin_top = 324.0
 margin_right = 181.0
-margin_bottom = 508.0
+margin_bottom = 364.0
 rect_min_size = Vector2( 121, 24 )
 text = "Default:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Default2/CheckButton")
+property = "default"
+property_type = "bool"
 
 [node name="Default2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 468.0
+margin_top = 324.0
 margin_right = 692.0
-margin_bottom = 508.0
+margin_bottom = 364.0
 alignment = 1
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Default2"]
@@ -423,20 +490,23 @@ margin_bottom = 40.0
 size_flags_horizontal = 3
 
 [node name="Control" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 512.0
+margin_top = 368.0
 margin_right = 181.0
-margin_bottom = 536.0
+margin_bottom = 392.0
 rect_min_size = Vector2( 121, 24 )
 text = "Control:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Control2/LineEdit")
+selector = NodePath("../Control2/SlotTypeOption")
+property = "control"
 
 [node name="Control2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 512.0
+margin_top = 368.0
 margin_right = 692.0
-margin_bottom = 536.0
+margin_bottom = 392.0
 alignment = 1
 
 [node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Control2"]
@@ -449,24 +519,25 @@ margin_left = 255.0
 margin_right = 507.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-text = "fire"
 align = 2
 
 [node name="Story Flag" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 540.0
+margin_top = 396.0
 margin_right = 181.0
-margin_bottom = 564.0
+margin_bottom = 420.0
 rect_min_size = Vector2( 121, 24 )
 text = "Story Flag:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Story Flag2/LineEdit")
+property = "story_flag"
 
 [node name="Story Flag2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 540.0
+margin_top = 396.0
 margin_right = 692.0
-margin_bottom = 564.0
+margin_bottom = 420.0
 alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag2"]
@@ -476,20 +547,24 @@ size_flags_horizontal = 3
 align = 2
 
 [node name="Story Flag Min" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 568.0
+margin_top = 424.0
 margin_right = 181.0
-margin_bottom = 592.0
+margin_bottom = 448.0
 rect_min_size = Vector2( 121, 24 )
 text = "Story Flag Min:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Story Flag Min2/SpinBox")
+property = "story_flag_min"
+property_type = "int"
+int_default = -1
 
 [node name="Story Flag Min2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 568.0
+margin_top = 424.0
 margin_right = 692.0
-margin_bottom = 592.0
+margin_bottom = 448.0
 alignment = 1
 
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Min2"]
@@ -502,20 +577,24 @@ value = -1.0
 align = 2
 
 [node name="Story Flag Max" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 596.0
+margin_top = 452.0
 margin_right = 181.0
-margin_bottom = 620.0
+margin_bottom = 476.0
 rect_min_size = Vector2( 121, 24 )
 text = "Story Flag Max:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Story Flag Max2/SpinBox")
+property = "story_flag_max"
+property_type = "int"
+int_default = -1
 
 [node name="Story Flag Max2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 596.0
+margin_top = 452.0
 margin_right = 692.0
-margin_bottom = 620.0
+margin_bottom = 476.0
 alignment = 1
 
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Max2"]
@@ -528,68 +607,102 @@ value = -1.0
 align = 2
 
 [node name="Warn If Thermal Below" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 624.0
+margin_top = 480.0
 margin_right = 181.0
-margin_bottom = 648.0
+margin_bottom = 504.0
 rect_min_size = Vector2( 121, 24 )
 text = "Warn If Thermal Below:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Warn If Thermal Below2/SpinBox")
+slider = NodePath("../Warn If Thermal Below2/HSlider")
+property = "warn_if_thermal_below"
+property_type = "float"
+float_default = 0.0
 
 [node name="Warn If Thermal Below2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 624.0
+margin_top = 480.0
 margin_right = 692.0
-margin_bottom = 648.0
+margin_bottom = 504.0
 alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Thermal Below2"]
-margin_right = 507.0
+[node name="HSlider" type="HSlider" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Thermal Below2"]
+margin_right = 403.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-max_value = inf
+size_flags_vertical = 1
+max_value = 50.0
+step = 0.1
+allow_greater = true
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Thermal Below2"]
+margin_left = 407.0
+margin_right = 507.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+max_value = 50.0
+step = 0.1
+allow_greater = true
 align = 2
 
 [node name="Warn If Electric Below" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 652.0
+margin_top = 508.0
 margin_right = 181.0
-margin_bottom = 676.0
+margin_bottom = 532.0
 rect_min_size = Vector2( 121, 24 )
 text = "Warn If Electric Below:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Warn If Electric Below2/SpinBox")
+slider = NodePath("../Warn If Electric Below2/HSlider")
+property = "warn_if_electric_below"
+property_type = "float"
+float_default = 0.0
 
 [node name="Warn If Electric Below2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 652.0
+margin_top = 508.0
 margin_right = 692.0
-margin_bottom = 676.0
+margin_bottom = 532.0
 alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Electric Below2"]
-margin_right = 507.0
+[node name="HSlider" type="HSlider" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Electric Below2"]
+margin_right = 403.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-max_value = inf
+size_flags_vertical = 1
+step = 5.0
+allow_greater = true
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Electric Below2"]
+margin_left = 407.0
+margin_right = 507.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+allow_greater = true
 align = 2
 
 [node name="Sticker Price Format" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 680.0
+margin_top = 536.0
 margin_right = 181.0
-margin_bottom = 704.0
+margin_bottom = 560.0
 rect_min_size = Vector2( 121, 24 )
 text = "Sticker Price Format:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Sticker Price Format2/LineEdit")
+property = "sticker_price_format"
+string_default = "%s E$"
 
 [node name="Sticker Price Format2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 680.0
+margin_top = 536.0
 margin_right = 692.0
-margin_bottom = 704.0
+margin_bottom = 560.0
 alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Sticker Price Format2"]
@@ -600,20 +713,23 @@ text = "%s E$"
 align = 2
 
 [node name="Sticker Price Multi Format" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 708.0
+margin_top = 564.0
 margin_right = 181.0
-margin_bottom = 732.0
+margin_bottom = 588.0
 rect_min_size = Vector2( 121, 24 )
 text = "Sticker Price Multi Format:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Sticker Price Multi Format2/LineEdit")
+property = "sticker_price_multi_format"
+string_default = "%s E$ (x%d)"
 
 [node name="Sticker Price Multi Format2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 708.0
+margin_top = 564.0
 margin_right = 692.0
-margin_bottom = 732.0
+margin_bottom = 588.0
 alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Sticker Price Multi Format2"]
@@ -624,20 +740,24 @@ text = "%s E$ (x%d)"
 align = 2
 
 [node name="Installed Color" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
-margin_top = 736.0
+margin_top = 592.0
 margin_right = 181.0
-margin_bottom = 760.0
+margin_bottom = 616.0
 rect_min_size = Vector2( 121, 24 )
 text = "Installed Color:"
 flat = true
 align = 0
 script = ExtResource( 19 )
+input = NodePath("../Installed Color2/ColorPickerButton")
+property = "installed_color"
+property_type = "color"
+color_default = Color( 0, 1, 0, 1 )
 
 [node name="Installed Color2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 185.0
-margin_top = 736.0
+margin_top = 592.0
 margin_right = 692.0
-margin_bottom = 760.0
+margin_bottom = 616.0
 alignment = 1
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Installed Color2"]
@@ -645,6 +765,195 @@ margin_right = 507.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 color = Color( 0, 1, 0, 1 )
+
+[node name="Disabled Color" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 620.0
+margin_right = 181.0
+margin_bottom = 644.0
+rect_min_size = Vector2( 121, 24 )
+text = "Disabled Color:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+input = NodePath("../Disabled Color2/ColorPickerButton")
+property = "disabled_color"
+property_type = "color"
+color_default = Color( 0.2, 0.2, 0.2, 1 )
+
+[node name="Disabled Color2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 620.0
+margin_right = 692.0
+margin_bottom = 644.0
+alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Disabled Color2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+color = Color( 0.2, 0.2, 0.2, 1 )
+
+[node name="Alignment" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 648.0
+margin_right = 181.0
+margin_bottom = 672.0
+rect_min_size = Vector2( 121, 24 )
+text = "Alignment:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+input = NodePath("../Alignment2/LineEdit")
+selector = NodePath("../Alignment2/SlotTypeOption")
+property = "alignment"
+
+[node name="Alignment2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 648.0
+margin_right = 692.0
+margin_bottom = 672.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Alignment2"]
+margin_right = 251.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Alignment2"]
+margin_left = 255.0
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+align = 2
+
+[node name="Restriction" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 676.0
+margin_right = 181.0
+margin_bottom = 700.0
+rect_min_size = Vector2( 121, 24 )
+text = "Restriction:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+input = NodePath("../Restriction2/LineEdit")
+property = "restriction"
+
+[node name="Restriction2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 676.0
+margin_right = 692.0
+margin_bottom = 700.0
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Restriction2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Config" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 704.0
+margin_right = 181.0
+margin_bottom = 784.0
+rect_min_size = Vector2( 121, 24 )
+text = "Config:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Config2" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 704.0
+margin_right = 692.0
+margin_bottom = 784.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2"]
+margin_right = 507.0
+margin_bottom = 24.0
+
+[node name="Config ID" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/HBoxContainer"]
+margin_right = 121.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 121, 24 )
+text = "Config ID:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+description_label = NodePath("../../../../../../../../../../../../../../../../../PropertyDialogue")
+input = NodePath("../Config ID2/LineEdit")
+property = "config.id"
+property_type = "dictionary"
+
+[node name="Config ID2" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/HBoxContainer"]
+margin_left = 125.0
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/HBoxContainer/Config ID2"]
+margin_right = 382.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+align = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2"]
+margin_top = 28.0
+margin_right = 507.0
+margin_bottom = 52.0
+
+[node name="Config Section" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/HBoxContainer2"]
+margin_right = 121.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 121, 24 )
+text = "Config Section:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+description_label = NodePath("../../../../../../../../../../../../../../../../../PropertyDialogue")
+input = NodePath("../Config Section2/LineEdit")
+property = "config.section"
+property_type = "color"
+
+[node name="Config Section2" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/HBoxContainer2"]
+margin_left = 125.0
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/HBoxContainer2/Config Section2"]
+margin_right = 382.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+align = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2"]
+margin_top = 56.0
+margin_right = 507.0
+margin_bottom = 80.0
+
+[node name="Config Entry" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/HBoxContainer3"]
+margin_right = 121.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 121, 24 )
+text = "Config Entry:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+description_label = NodePath("../../../../../../../../../../../../../../../../../PropertyDialogue")
+input = NodePath("../Config Entry2/LineEdit")
+property = "config.entry"
+property_type = "dictionary"
+
+[node name="Config Entry2" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/HBoxContainer3"]
+margin_left = 125.0
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/HBoxContainer3/Config Entry2"]
+margin_right = 382.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+align = 2
 
 [node name="DriverPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer"]
 margin_left = 724.0
