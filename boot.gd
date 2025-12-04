@@ -67,6 +67,7 @@ func _ready():
 	openTextOutputPath.text = output_file
 	current_file = ProjectSettings.globalize_path(getCFG("settings","save_file_path"))
 	openSaveTextPath.text = current_file
+	openSaveFile.set_current_dir(current_file.split(current_file.split("/")[current_file.split("/").size() - 1])[0])
 
 
 func _on_Button2_pressed():

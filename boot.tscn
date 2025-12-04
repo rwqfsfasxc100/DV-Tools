@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://boot.gd" type="Script" id=1]
 [ext_resource path="res://equipment_driver/Add Equipment Items.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://equipment_driver/Register Nodes.gd" type="Script" id=14]
 [ext_resource path="res://equipment_driver/Modify Weapon Templates.gd" type="Script" id=15]
 [ext_resource path="res://equipment_driver/Modify Weapons.gd" type="Script" id=16]
+[ext_resource path="res://equipment_driver/parts/PropertyButton.gd" type="Script" id=19]
 [ext_resource path="res://config_icon.png" type="Texture" id=20]
 [ext_resource path="res://settings/SettingsMenu.tscn" type="PackedScene" id=21]
 
@@ -82,7 +83,6 @@ margin_bottom = 536.0
 tab_align = 0
 
 [node name="Add Equipment Items" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -108,121 +108,543 @@ margin_right = 720.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 713.0
 margin_bottom = 493.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer"]
-margin_right = 121.0
-margin_bottom = 486.0
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer"]
+margin_right = 692.0
+margin_bottom = 760.0
+rect_min_size = Vector2( 692, 486 )
+columns = 2
 
-[node name="System" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer2"]
-margin_right = 121.0
+[node name="System" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_right = 181.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 121, 24 )
 text = "System Name:"
 flat = true
 align = 0
+script = ExtResource( 19 )
 
-[node name="Equipment Type" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer2"]
-margin_top = 28.0
-margin_right = 121.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 121, 24 )
-text = "Equipment Type:"
-flat = true
-align = 0
-
-[node name="Slot Type" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer2"]
-margin_top = 56.0
-margin_right = 121.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 121, 24 )
-text = "Slot Type:"
-flat = true
-align = 0
-
-[node name="Numerical Value" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer2"]
-margin_top = 84.0
-margin_right = 121.0
-margin_bottom = 108.0
-rect_min_size = Vector2( 121, 24 )
-text = "Numerical Value:"
-flat = true
-align = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer"]
-margin_left = 125.0
-margin_right = 706.0
-margin_bottom = 486.0
-size_flags_horizontal = 3
-
-[node name="System" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer"]
-margin_right = 581.0
+[node name="System2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_right = 692.0
 margin_bottom = 24.0
+size_flags_horizontal = 3
 alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer/System"]
-margin_right = 581.0
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/System2"]
+margin_right = 507.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "SYSTEM_EXAMPLE"
 align = 2
 
-[node name="Equipment Type" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer"]
+[node name="Equipment Type" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_top = 28.0
-margin_right = 581.0
+margin_right = 181.0
 margin_bottom = 52.0
+rect_min_size = Vector2( 121, 24 )
+text = "Equipment Type:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Equipment Type2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 28.0
+margin_right = 692.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
 alignment = 1
 
-[node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer/Equipment Type"]
-margin_right = 288.0
+[node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Equipment Type2"]
+margin_right = 251.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer/Equipment Type"]
-margin_left = 292.0
-margin_right = 581.0
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Equipment Type2"]
+margin_left = 255.0
+margin_right = 507.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "EQUIPMENT_MASS_DRIVERS"
 align = 2
 
-[node name="Slot Type" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer"]
+[node name="Slot Type" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_top = 56.0
-margin_right = 581.0
+margin_right = 181.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 121, 24 )
+text = "Slot Type:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Slot Type2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 56.0
+margin_right = 692.0
 margin_bottom = 80.0
 alignment = 1
 
-[node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer/Slot Type"]
-margin_right = 288.0
+[node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Slot Type2"]
+margin_right = 251.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer/Slot Type"]
-margin_left = 292.0
-margin_right = 581.0
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Slot Type2"]
+margin_left = 255.0
+margin_right = 507.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "HARDPOINT"
 align = 2
 
-[node name="Num val" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer"]
+[node name="Numerical Value" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_top = 84.0
-margin_right = 581.0
+margin_right = 181.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 121, 24 )
+text = "Numerical Value:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Num val" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 84.0
+margin_right = 692.0
 margin_bottom = 108.0
 alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/HBoxContainer/VBoxContainer/Num val"]
-margin_right = 581.0
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Num val"]
+margin_right = 507.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 min_value = -1.0
 max_value = inf
 value = -1.0
 align = 2
+
+[node name="Capability Lock" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 112.0
+margin_right = 181.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 121, 24 )
+text = "Capability Lock:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Capability2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 112.0
+margin_right = 692.0
+margin_bottom = 152.0
+alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Capability2"]
+margin_right = 507.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Name Override" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 156.0
+margin_right = 181.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 121, 24 )
+text = "Name Override:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Name Override2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 156.0
+margin_right = 692.0
+margin_bottom = 180.0
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Name Override2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Description" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 184.0
+margin_right = 181.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 121, 24 )
+text = "Description:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Description2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 184.0
+margin_right = 692.0
+margin_bottom = 256.0
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Description2"]
+margin_right = 507.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 0, 72 )
+size_flags_horizontal = 3
+highlight_all_occurrences = true
+
+[node name="Manual" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 260.0
+margin_right = 181.0
+margin_bottom = 332.0
+rect_min_size = Vector2( 121, 24 )
+text = "Manual:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Manual2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 260.0
+margin_right = 692.0
+margin_bottom = 332.0
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Manual2"]
+margin_right = 507.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 0, 72 )
+size_flags_horizontal = 3
+highlight_all_occurrences = true
+
+[node name="Specs" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 336.0
+margin_right = 181.0
+margin_bottom = 408.0
+rect_min_size = Vector2( 121, 24 )
+text = "Specs:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Specs2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 336.0
+margin_right = 692.0
+margin_bottom = 408.0
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Specs2"]
+margin_right = 507.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 0, 72 )
+size_flags_horizontal = 3
+highlight_all_occurrences = true
+
+[node name="Price" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 412.0
+margin_right = 181.0
+margin_bottom = 436.0
+rect_min_size = Vector2( 121, 24 )
+text = "Price:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Price2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 412.0
+margin_right = 692.0
+margin_bottom = 436.0
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Price2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+max_value = inf
+align = 2
+
+[node name="Test Protocol" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 440.0
+margin_right = 181.0
+margin_bottom = 464.0
+rect_min_size = Vector2( 121, 24 )
+text = "Test Protocol:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Test Protocol2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 440.0
+margin_right = 692.0
+margin_bottom = 464.0
+alignment = 1
+
+[node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Test Protocol2"]
+margin_right = 251.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Test Protocol2"]
+margin_left = 255.0
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "fire"
+align = 2
+
+[node name="Default" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 468.0
+margin_right = 181.0
+margin_bottom = 508.0
+rect_min_size = Vector2( 121, 24 )
+text = "Default:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Default2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 468.0
+margin_right = 692.0
+margin_bottom = 508.0
+alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Default2"]
+margin_right = 507.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Control" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 512.0
+margin_right = 181.0
+margin_bottom = 536.0
+rect_min_size = Vector2( 121, 24 )
+text = "Control:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Control2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 512.0
+margin_right = 692.0
+margin_bottom = 536.0
+alignment = 1
+
+[node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Control2"]
+margin_right = 251.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Control2"]
+margin_left = 255.0
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "fire"
+align = 2
+
+[node name="Story Flag" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 540.0
+margin_right = 181.0
+margin_bottom = 564.0
+rect_min_size = Vector2( 121, 24 )
+text = "Story Flag:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Story Flag2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 540.0
+margin_right = 692.0
+margin_bottom = 564.0
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+align = 2
+
+[node name="Story Flag Min" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 568.0
+margin_right = 181.0
+margin_bottom = 592.0
+rect_min_size = Vector2( 121, 24 )
+text = "Story Flag Min:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Story Flag Min2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 568.0
+margin_right = 692.0
+margin_bottom = 592.0
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Min2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = inf
+value = -1.0
+align = 2
+
+[node name="Story Flag Max" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 596.0
+margin_right = 181.0
+margin_bottom = 620.0
+rect_min_size = Vector2( 121, 24 )
+text = "Story Flag Max:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Story Flag Max2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 596.0
+margin_right = 692.0
+margin_bottom = 620.0
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Max2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = inf
+value = -1.0
+align = 2
+
+[node name="Warn If Thermal Below" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 624.0
+margin_right = 181.0
+margin_bottom = 648.0
+rect_min_size = Vector2( 121, 24 )
+text = "Warn If Thermal Below:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Warn If Thermal Below2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 624.0
+margin_right = 692.0
+margin_bottom = 648.0
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Thermal Below2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+max_value = inf
+align = 2
+
+[node name="Warn If Electric Below" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 652.0
+margin_right = 181.0
+margin_bottom = 676.0
+rect_min_size = Vector2( 121, 24 )
+text = "Warn If Electric Below:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Warn If Electric Below2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 652.0
+margin_right = 692.0
+margin_bottom = 676.0
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Electric Below2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+max_value = inf
+align = 2
+
+[node name="Sticker Price Format" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 680.0
+margin_right = 181.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 121, 24 )
+text = "Sticker Price Format:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Sticker Price Format2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 680.0
+margin_right = 692.0
+margin_bottom = 704.0
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Sticker Price Format2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "%s E$"
+align = 2
+
+[node name="Sticker Price Multi Format" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 708.0
+margin_right = 181.0
+margin_bottom = 732.0
+rect_min_size = Vector2( 121, 24 )
+text = "Sticker Price Multi Format:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Sticker Price Multi Format2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 708.0
+margin_right = 692.0
+margin_bottom = 732.0
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Sticker Price Multi Format2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "%s E$ (x%d)"
+align = 2
+
+[node name="Installed Color" type="Button" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_top = 736.0
+margin_right = 181.0
+margin_bottom = 760.0
+rect_min_size = Vector2( 121, 24 )
+text = "Installed Color:"
+flat = true
+align = 0
+script = ExtResource( 19 )
+
+[node name="Installed Color2" type="HBoxContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
+margin_left = 185.0
+margin_top = 736.0
+margin_right = 692.0
+margin_bottom = 760.0
+alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Installed Color2"]
+margin_right = 507.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+color = Color( 0, 1, 0, 1 )
 
 [node name="DriverPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer/Add Equipment Items/VBoxContainer/HBoxContainer"]
 margin_left = 724.0
@@ -379,6 +801,7 @@ popup_exclusive = true
 window_title = "Failed to load"
 
 [node name="Equipment Tags" type="Tabs" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
