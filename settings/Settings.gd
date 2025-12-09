@@ -7,9 +7,8 @@ var file = File.new()
 signal settings_changed(how)
 
 var cfg = {
-	"drivers":{
-		"current_dir":"",
-		"references":PoolStringArray([])
+	"add_equipment_items":{
+		"selected_driver":"",
 	},
 	"settings":{
 		"output_file_path":"user://save_output.json",

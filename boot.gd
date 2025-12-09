@@ -99,6 +99,8 @@ func handleDict(dict,root,depth = 0):
 		item2.set_text(0,space + spacer + str(dict))
 	else:
 		for i in dict:
+			if i == "garage":
+				breakpoint
 			var item = tree.create_item(root)
 			item.set_collapsed(true)
 			var ispace = ""
