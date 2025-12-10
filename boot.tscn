@@ -82,6 +82,33 @@ margin_bottom = 536.0
 tab_align = 0
 
 [node name="Add Equipment Items" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer" instance=ExtResource( 2 )]
+system_p = NodePath("")
+equipment_type_p = NodePath("")
+slot_type_p = NodePath("")
+num_val_p = NodePath("")
+capability_lock_p = NodePath("")
+name_override_p = NodePath("")
+description_p = NodePath("")
+manual_p = NodePath("")
+specs_p = NodePath("")
+price_p = NodePath("")
+test_protocol_p = NodePath("")
+default_p = NodePath("")
+control_p = NodePath("")
+story_flag_p = NodePath("")
+story_flag_min_p = NodePath("")
+story_flag_max_p = NodePath("")
+warn_if_thermal_below_p = NodePath("")
+warn_if_electric_below_p = NodePath("")
+sticker_price_format_p = NodePath("")
+sticker_price_multi_format_p = NodePath("")
+installed_color_p = NodePath("")
+disabled_color_p = NodePath("")
+alignment_p = NodePath("")
+restriction_p = NodePath("")
+config_id_p = NodePath("")
+config_section_p = NodePath("")
+config_entry_p = NodePath("")
 
 [node name="Equipment Tags" parent="VBoxContainer/TabContainer/EquipmentDriver/VBoxContainer/TabContainer/Equipment/VBoxContainer/TabContainer" instance=ExtResource( 12 )]
 

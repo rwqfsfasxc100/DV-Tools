@@ -9,4 +9,4 @@ export (int) var int_default = 0
 export (float) var float_default = 0.0
 export (Color) var color_default = Color(0,0,0,1)
 
-
+export (bool) var required = false

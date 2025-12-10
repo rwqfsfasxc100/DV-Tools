@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Control",
+"class": "property_definition",
+"language": "GDScript",
+"path": "res://equipment_driver/parts/DefineProperty.gd"
+} ]
+_global_script_class_icons={
+"property_definition": ""
+}
+
 [application]
 
 config/name="Hev's ΔV Tools"

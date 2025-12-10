@@ -93,6 +93,8 @@ align = 0
 script = ExtResource( 2 )
 
 [node name="System Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
+string_default = "SYSTEM_EXAMPLE"
+required = true
 
 [node name="System Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -101,6 +103,9 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+reset_node_p = NodePath("../System Reset")
+setting = "system"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/System Box"]
 margin_right = 479.0
@@ -122,6 +127,8 @@ script = ExtResource( 2 )
 [node name="Equipment Type Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 28.0
 margin_bottom = 52.0
+string_default = "EQUIPMENT_MASS_DRIVERS"
+required = true
 
 [node name="Equipment Type Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -131,6 +138,10 @@ margin_bottom = 52.0
 size_flags_horizontal = 3
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+option_node_p = NodePath("SlotTypeOption")
+reset_node_p = NodePath("../Equipment Type Reset")
+setting = "equipment_type"
 
 [node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Equipment Type Box"]
 margin_right = 237.0
@@ -158,6 +169,8 @@ script = ExtResource( 2 )
 [node name="Slot Type Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 56.0
 margin_bottom = 80.0
+string_default = "HARDPOINT"
+required = true
 
 [node name="Slot Type Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -166,6 +179,10 @@ margin_right = 692.0
 margin_bottom = 80.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+option_node_p = NodePath("SlotTypeOption")
+reset_node_p = NodePath("../Slot Type Reset")
+setting = "slot_type"
 
 [node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Slot Type Box"]
 margin_right = 237.0
@@ -193,6 +210,8 @@ script = ExtResource( 2 )
 [node name="Numerical Value Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 84.0
 margin_bottom = 108.0
+type = "int"
+int_default = -1
 
 [node name="Numerical Value Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -201,6 +220,9 @@ margin_right = 692.0
 margin_bottom = 108.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("SpinBox")
+reset_node_p = NodePath("../Numerical Value Reset")
+setting = "num_val"
 
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Numerical Value Box"]
 margin_right = 479.0
@@ -224,6 +246,7 @@ script = ExtResource( 2 )
 [node name="Capability Lock Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 112.0
 margin_bottom = 152.0
+type = "bool"
 
 [node name="Capability Lock Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -232,6 +255,9 @@ margin_right = 692.0
 margin_bottom = 152.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("CheckButton")
+reset_node_p = NodePath("../Capability Lock Reset")
+setting = "capability_lock"
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Capability Lock Box"]
 margin_right = 479.0
@@ -259,6 +285,9 @@ margin_right = 692.0
 margin_bottom = 180.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+reset_node_p = NodePath("../Name Override Reset")
+setting = "name_override"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Name Override Box"]
 margin_right = 479.0
@@ -286,6 +315,9 @@ margin_right = 692.0
 margin_bottom = 208.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+reset_node_p = NodePath("../Description Reset")
+setting = "description"
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Description Box"]
 visible = false
@@ -322,6 +354,9 @@ margin_right = 692.0
 margin_bottom = 236.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+reset_node_p = NodePath("../Manual Reset")
+setting = "manual"
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Manual Box"]
 visible = false
@@ -358,6 +393,9 @@ margin_right = 692.0
 margin_bottom = 264.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+reset_node_p = NodePath("../Specs Reset")
+setting = "specs"
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Specs Box"]
 visible = false
@@ -386,6 +424,7 @@ script = ExtResource( 2 )
 [node name="Price Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 268.0
 margin_bottom = 292.0
+type = "int"
 
 [node name="Price Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -394,6 +433,10 @@ margin_right = 692.0
 margin_bottom = 292.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("SpinBox")
+slider_node_p = NodePath("HSlider")
+reset_node_p = NodePath("../Price Reset")
+setting = "price"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Price Box"]
 margin_right = 237.0
@@ -425,6 +468,7 @@ script = ExtResource( 2 )
 [node name="Test Protocol Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 296.0
 margin_bottom = 320.0
+string_default = "fire"
 
 [node name="Test Protocol Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -433,6 +477,10 @@ margin_right = 692.0
 margin_bottom = 320.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+option_node_p = NodePath("SlotTypeOption")
+reset_node_p = NodePath("../Test Protocol Reset")
+setting = "test_protocol"
 
 [node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Test Protocol Box"]
 margin_right = 237.0
@@ -460,6 +508,7 @@ script = ExtResource( 2 )
 [node name="Default Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 324.0
 margin_bottom = 364.0
+type = "bool"
 
 [node name="Default Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -468,6 +517,9 @@ margin_right = 692.0
 margin_bottom = 364.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("CheckButton")
+reset_node_p = NodePath("../Default Reset")
+setting = "default"
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Default Box"]
 margin_right = 479.0
@@ -495,6 +547,10 @@ margin_right = 692.0
 margin_bottom = 392.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+option_node_p = NodePath("SlotTypeOption")
+reset_node_p = NodePath("../Control Reset")
+setting = "control"
 
 [node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Control Box"]
 margin_right = 237.0
@@ -529,6 +585,9 @@ margin_right = 692.0
 margin_bottom = 420.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+reset_node_p = NodePath("../Story Flag Reset")
+setting = "story_flag"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Box"]
 margin_right = 479.0
@@ -549,6 +608,8 @@ script = ExtResource( 2 )
 [node name="Story Flag Min Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 424.0
 margin_bottom = 448.0
+type = "int"
+int_default = -1
 
 [node name="Story Flag Min Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -557,6 +618,9 @@ margin_right = 692.0
 margin_bottom = 448.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("SpinBox")
+reset_node_p = NodePath("../Story Flag Min Reset")
+setting = "story_flag_min"
 
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Min Box"]
 margin_right = 479.0
@@ -580,6 +644,8 @@ script = ExtResource( 2 )
 [node name="Story Flag Max Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 452.0
 margin_bottom = 476.0
+type = "int"
+int_default = -1
 
 [node name="Story Flag Max Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -588,6 +654,9 @@ margin_right = 692.0
 margin_bottom = 476.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("SpinBox")
+reset_node_p = NodePath("../Story Flag Max Reset")
+setting = "story_flag_max"
 
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Max Box"]
 margin_right = 479.0
@@ -611,6 +680,7 @@ script = ExtResource( 2 )
 [node name="Warn If Thermal Below Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 480.0
 margin_bottom = 504.0
+type = "float"
 
 [node name="Warn If Thermal Below Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -619,6 +689,10 @@ margin_right = 692.0
 margin_bottom = 504.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("SpinBox")
+slider_node_p = NodePath("HSlider")
+reset_node_p = NodePath("../Warn If Thermal Below Reset")
+setting = "warn_if_thermal_below"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Thermal Below Box"]
 margin_right = 375.0
@@ -652,6 +726,7 @@ script = ExtResource( 2 )
 [node name="Warn If Electric Below Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 508.0
 margin_bottom = 532.0
+type = "float"
 
 [node name="Warn If Electric Below Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -660,6 +735,10 @@ margin_right = 692.0
 margin_bottom = 532.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("SpinBox")
+slider_node_p = NodePath("HSlider")
+reset_node_p = NodePath("../Warn If Electric Below Reset")
+setting = "warn_if_electric_below"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Electric Below Box"]
 margin_right = 375.0
@@ -690,6 +769,7 @@ script = ExtResource( 2 )
 [node name="Sticker Price Format Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 536.0
 margin_bottom = 560.0
+string_default = "%s E$"
 
 [node name="Sticker Price Format Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -698,6 +778,9 @@ margin_right = 692.0
 margin_bottom = 560.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+reset_node_p = NodePath("../Sticker Price Format Reset")
+setting = "sticker_price_format"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Sticker Price Format Box"]
 margin_right = 479.0
@@ -719,6 +802,7 @@ script = ExtResource( 2 )
 [node name="Sticker Price Multi Format Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 564.0
 margin_bottom = 588.0
+string_default = "%s E$ (x%d)"
 
 [node name="Sticker Price Multi Format Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -727,6 +811,9 @@ margin_right = 692.0
 margin_bottom = 588.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+reset_node_p = NodePath("../Sticker Price Multi Format Reset")
+setting = "sticker_price_multi_format"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Sticker Price Multi Format Box"]
 margin_right = 479.0
@@ -748,6 +835,8 @@ script = ExtResource( 2 )
 [node name="Installed Color Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 592.0
 margin_bottom = 616.0
+type = "color"
+color_default = Color( 0, 1, 0, 1 )
 
 [node name="Installed Color Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -756,12 +845,16 @@ margin_right = 692.0
 margin_bottom = 616.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("ColorPickerButton")
+reset_node_p = NodePath("../Installed Color Reset")
+setting = "installed_color"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Installed Color Box"]
 margin_right = 479.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 color = Color( 0, 1, 0, 1 )
+edit_alpha = false
 
 [node name="Disabled Color" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_top = 620.0
@@ -776,6 +869,8 @@ script = ExtResource( 2 )
 [node name="Disabled Color Reset" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 margin_top = 620.0
 margin_bottom = 644.0
+type = "color"
+color_default = Color( 0.2, 0.2, 0.2, 1 )
 
 [node name="Disabled Color Box" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_left = 213.0
@@ -784,12 +879,16 @@ margin_right = 692.0
 margin_bottom = 644.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("ColorPickerButton")
+reset_node_p = NodePath("../Disabled Color Reset")
+setting = "disabled_color"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Disabled Color Box"]
 margin_right = 479.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 color = Color( 0.2, 0.2, 0.2, 1 )
+edit_alpha = false
 
 [node name="Alignment" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_top = 648.0
@@ -813,6 +912,10 @@ margin_bottom = 672.0
 size_flags_horizontal = 3
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+option_node_p = NodePath("SlotTypeOption")
+reset_node_p = NodePath("../Alignment Reset")
+setting = "alignment"
 
 [node name="SlotTypeOption" type="OptionButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Alignment Box"]
 margin_right = 237.0
@@ -847,6 +950,9 @@ margin_right = 692.0
 margin_bottom = 700.0
 alignment = 1
 script = ExtResource( 4 )
+input_node_p = NodePath("LineEdit")
+reset_node_p = NodePath("../Restriction Reset")
+setting = "restriction"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Restriction Box"]
 margin_right = 479.0
@@ -879,6 +985,9 @@ margin_bottom = 784.0
 margin_right = 479.0
 margin_bottom = 24.0
 script = ExtResource( 4 )
+input_node_p = NodePath("Config ID Box/LineEdit")
+reset_node_p = NodePath("Config ID Reset")
+setting = "config.id"
 
 [node name="Config ID" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/Config ID"]
 margin_right = 121.0
@@ -911,6 +1020,9 @@ margin_top = 28.0
 margin_right = 479.0
 margin_bottom = 52.0
 script = ExtResource( 4 )
+input_node_p = NodePath("Config Section Box/LineEdit")
+reset_node_p = NodePath("Config Section Reset")
+setting = "config.section"
 
 [node name="Config Section" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/Config Section"]
 margin_right = 121.0
@@ -943,6 +1055,9 @@ margin_top = 56.0
 margin_right = 479.0
 margin_bottom = 80.0
 script = ExtResource( 4 )
+input_node_p = NodePath("Config Entry Box/LineEdit")
+reset_node_p = NodePath("Config Entry Reset")
+setting = "config.entry"
 
 [node name="Config Entry" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/Config Entry"]
 margin_right = 121.0

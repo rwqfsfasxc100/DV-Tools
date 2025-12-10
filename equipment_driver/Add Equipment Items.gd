@@ -99,6 +99,11 @@ var state = {}
 
 var needs_save = false
 
+signal value_changed(opt,how)
+signal update_value_to(new_state)
+signal file_load_changed(is_loaded)
+
+
 func _ready():
 	button_openfile.connect("pressed",self,"openfile_pressed")
 	button_loadfile.connect("pressed",self,"loadfile_pressed")
@@ -115,6 +120,11 @@ func _ready():
 	
 	set_filepath(driver_file_path)
 	set_folder_path(driver_folder_path)
+	
+	
+	
+	
+	emit_signal("file_load_changed",false)
 
 
 func set_filepath(to):
@@ -167,8 +177,11 @@ var tempstate = {}
 
 func handle_data(data):
 	clear_list()
+	emit_signal("file_load_changed",true)
 	for i in data:
 		make_button(data[i])
+	if driverlist.get_children().size() > 0:
+		driverlist.get_child(0).update_display_content()
 	
 	
 
@@ -193,10 +206,14 @@ func make_button(btn_state):
 		if driverlist.get_child_count() > 0:
 			driverlist.get_child(0).update_display_content()
 
-signal current_equipment_item_changed(to)
+func equipment_button_pressed(btn_state,button):
+	emit_signal("update_value_to",btn_state)
+	current_button = button
 
-func equipment_button_pressed(btn_state):
-	pass
+var current_button
+
+func value_updated(opt,how):
+	current_button.set_value(opt,how)
 
 
 func unsaveddata_confirmed():
@@ -220,7 +237,9 @@ func loadfile_pressed():
 	load_file()
 
 func closefile_pressed():
-	pass
+	clear_list()
+	state.clear()
+	emit_signal("file_load_changed",false)
 
 func savefile_pressed():
 	pass
