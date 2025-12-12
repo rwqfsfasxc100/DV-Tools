@@ -79,12 +79,17 @@ export (NodePath) var dialog_deletesure_p
 onready var dialog_deletesure = get_node_or_null(dialog_deletesure_p)
 export (NodePath) var dialog_newentry_p
 onready var dialog_newentry = get_node_or_null(dialog_newentry_p)
+export (NodePath) var dialog_newentry_exists_p
+onready var dialog_newentry_exists = get_node_or_null(dialog_newentry_exists_p)
 export (NodePath) var dialog_openfile_p
 onready var dialog_openfile = get_node_or_null(dialog_openfile_p)
 export (NodePath) var dialog_errormsg_p
 onready var dialog_errormsg = get_node_or_null(dialog_errormsg_p)
 export (NodePath) var dialog_unsaveddata_p
 onready var dialog_unsaveddata = get_node_or_null(dialog_unsaveddata_p)
+
+export (NodePath) var driver_panel_p
+onready var driver_panel = get_node_or_null(driver_panel_p)
 
 export var driver_file_path_section = "add_equipment_items"
 export var driver_file_path_setting = "selected_driver"
@@ -151,6 +156,7 @@ func load_file(force:bool = false):
 		var data = load(driver_file_path)
 		if data:
 			if needs_save and not force:
+				unsave_mode = "overwrite"
 				tempstate = data.get_script_constant_map()
 				dialog_unsaveddata.popup_centered()
 			else:
@@ -213,12 +219,20 @@ func equipment_button_pressed(btn_state,button):
 var current_button
 
 func value_updated(opt,how):
+	needs_save = true
 	current_button.set_value(opt,how)
 
-
+var unsave_mode = ""
 func unsaveddata_confirmed():
-	handle_data(tempstate)
-	tempstate.clear()
+	match unsave_mode:
+		"overwrite":
+			handle_data(tempstate)
+			tempstate.clear()
+		"close_data":
+			close_data()
+		_:
+			print("Unsave mode [%s] is not handled" % unsave_mode)
+	unsave_mode = ""
 
 func deletesure_confirmed():
 	pass
@@ -237,6 +251,13 @@ func loadfile_pressed():
 	load_file()
 
 func closefile_pressed():
+	if needs_save:
+		unsave_mode = "close_data"
+		dialog_unsaveddata.popup_centered()
+	else:
+		close_data()
+
+func close_data():
 	clear_list()
 	state.clear()
 	emit_signal("file_load_changed",false)

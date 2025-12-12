@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://equipment_driver/Add Equipment Items.gd" type="Script" id=1]
 [ext_resource path="res://equipment_driver/parts/PropertyButton.gd" type="Script" id=2]
 [ext_resource path="res://driver_panel/Reset.tscn" type="PackedScene" id=3]
 [ext_resource path="res://equipment_driver/parts/DefineProperty.gd" type="Script" id=4]
+[ext_resource path="res://driver_panel/DriverPanel.gd" type="Script" id=5]
 
 [node name="Add Equipment Items" type="Tabs"]
 anchor_right = 1.0
@@ -52,9 +53,11 @@ button_newentry_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContai
 button_deleteentry_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer2/Delete")
 dialog_deletesure_p = NodePath("Dialog/DeleteSure")
 dialog_newentry_p = NodePath("Dialog/NewEntry")
+dialog_newentry_exists_p = NodePath("Dialog/NewEntry/NewEntryExists")
 dialog_openfile_p = NodePath("Dialog/OpenFile")
 dialog_errormsg_p = NodePath("Dialog/ErrorMSG")
 dialog_unsaveddata_p = NodePath("Dialog/UnsavedData")
+driver_panel_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 1024.0
@@ -1090,6 +1093,7 @@ margin_left = 724.0
 margin_right = 1024.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 300, 0 )
+script = ExtResource( 5 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/DriverPanel"]
 margin_left = 7.0
@@ -1204,19 +1208,32 @@ mouse_filter = 2
 
 [node name="DeleteSure" type="ConfirmationDialog" parent="Dialog"]
 margin_top = 95.0
-margin_right = 286.0
-margin_bottom = 486.0
+margin_right = 350.0
+margin_bottom = 295.0
 rect_min_size = Vector2( 200, 105 )
 popup_exclusive = true
 window_title = ""
 
 [node name="NewEntry" type="ConfirmationDialog" parent="Dialog"]
+visible = true
 margin_top = 95.0
-margin_right = 286.0
-margin_bottom = 486.0
+margin_right = 350.0
+margin_bottom = 295.0
 rect_min_size = Vector2( 200, 105 )
 popup_exclusive = true
 window_title = ""
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialog/NewEntry"]
+margin_right = 350.0
+margin_bottom = 150.0
+
+[node name="NewEntryExists" type="AcceptDialog" parent="Dialog/NewEntry"]
+margin_right = 200.0
+margin_bottom = 109.0
+popup_exclusive = true
+window_title = "Entry Exists"
+dialog_text = "Entry already exists, please use a different system name."
+dialog_autowrap = true
 
 [node name="OpenFile" type="FileDialog" parent="Dialog"]
 margin_left = 30.0
@@ -1233,17 +1250,18 @@ filters = PoolStringArray( "ADD_EQUIPMENT_ITEMS.gd" )
 show_hidden_files = true
 
 [node name="ErrorMSG" type="AcceptDialog" parent="Dialog"]
-margin_right = 450.0
-margin_bottom = 150.0
+margin_right = 350.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 0, 150 )
 popup_exclusive = true
 window_title = "Failed to load"
 dialog_autowrap = true
 
 [node name="UnsavedData" type="ConfirmationDialog" parent="Dialog"]
-margin_right = 300.0
-margin_bottom = 105.0
+margin_right = 394.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 300, 105 )
 popup_exclusive = true
 window_title = "Unsaved Data Warning"
 dialog_text = "You have unsaved data. Are you sure you want to continue?"
+dialog_hide_on_ok = false
