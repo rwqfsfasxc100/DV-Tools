@@ -25,3 +25,5 @@ margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = SubResource( 1 )
 expand = true
+
+[connection signal="pressed" from="Button" to="." method="reset"]

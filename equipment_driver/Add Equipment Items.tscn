@@ -16,48 +16,7 @@ margin_bottom = -4.0
 rect_min_size = Vector2( 1018, 500 )
 tab_align = 0
 script = ExtResource( 1 )
-system_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/System Box")
-equipment_type_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Equipment Type Box")
-slot_type_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Slot Type Box")
-num_val_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Numerical Value Box")
-capability_lock_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Capability Lock Box")
-name_override_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Name Override Box")
-description_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Description Box")
-manual_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Manual Box")
-specs_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Specs Box")
-price_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Price Box")
-test_protocol_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Test Protocol Box")
-default_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Default Box")
-control_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Control Box")
-story_flag_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Box")
-story_flag_min_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Min Box")
-story_flag_max_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Story Flag Max Box")
-warn_if_thermal_below_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Thermal Below Box")
-warn_if_electric_below_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Warn If Electric Below Box")
-sticker_price_format_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Sticker Price Format Box")
-sticker_price_multi_format_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Sticker Price Multi Format Box")
-installed_color_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Installed Color Box")
-disabled_color_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Disabled Color Box")
-alignment_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Alignment Box")
-restriction_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Restriction Box")
-config_id_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/Config ID")
-config_section_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/Config Section")
-config_entry_p = NodePath("VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer/Config2/Config Entry")
-filepath_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer3/FilePath")
-driverlist_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer")
-button_openfile_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer3/OpenFile")
-button_loadfile_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer/LoadFile")
-button_closefile_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer/CloseFile")
-button_savefile_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer/SaveFile")
-button_newentry_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer2/New")
-button_deleteentry_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel/VBoxContainer/VBoxContainer/HBoxContainer2/Delete")
-dialog_deletesure_p = NodePath("Dialog/DeleteSure")
-dialog_newentry_p = NodePath("Dialog/NewEntry")
-dialog_newentry_exists_p = NodePath("Dialog/NewEntry/NewEntryExists")
-dialog_openfile_p = NodePath("Dialog/OpenFile")
-dialog_errormsg_p = NodePath("Dialog/ErrorMSG")
-dialog_unsaveddata_p = NodePath("Dialog/UnsavedData")
-driver_panel_p = NodePath("VBoxContainer/HBoxContainer/DriverPanel")
+dialog_newentry_exists_p = NodePath("Dialog/NewEntryExists")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 1024.0
@@ -296,6 +255,7 @@ setting = "name_override"
 margin_right = 479.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+align = 2
 
 [node name="Description" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer/GridContainer"]
 margin_top = 184.0
@@ -1218,22 +1178,27 @@ window_title = ""
 visible = true
 margin_top = 95.0
 margin_right = 350.0
-margin_bottom = 295.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 200, 105 )
 popup_exclusive = true
 window_title = ""
+dialog_hide_on_ok = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dialog/NewEntry"]
-margin_right = 350.0
-margin_bottom = 150.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 342.0
+margin_bottom = 69.0
 
-[node name="NewEntryExists" type="AcceptDialog" parent="Dialog/NewEntry"]
-margin_right = 200.0
-margin_bottom = 109.0
-popup_exclusive = true
-window_title = "Entry Exists"
-dialog_text = "Entry already exists, please use a different system name."
-dialog_autowrap = true
+[node name="Label" type="Label" parent="Dialog/NewEntry/VBoxContainer"]
+margin_right = 334.0
+margin_bottom = 14.0
+text = "Entry Name:"
+
+[node name="NewEntryName" type="LineEdit" parent="Dialog/NewEntry/VBoxContainer"]
+margin_top = 18.0
+margin_right = 334.0
+margin_bottom = 42.0
 
 [node name="OpenFile" type="FileDialog" parent="Dialog"]
 margin_left = 30.0
@@ -1265,3 +1230,26 @@ popup_exclusive = true
 window_title = "Unsaved Data Warning"
 dialog_text = "You have unsaved data. Are you sure you want to continue?"
 dialog_hide_on_ok = false
+
+[node name="NewEntryExists" type="AcceptDialog" parent="Dialog"]
+margin_left = 8.0
+margin_top = 103.0
+margin_right = 342.0
+margin_bottom = 259.0
+popup_exclusive = true
+window_title = "Entry Exists"
+dialog_text = "Entry already exists, please use a different system name."
+dialog_autowrap = true
+
+[node name="BlankEntry" type="AcceptDialog" parent="Dialog"]
+margin_left = 8.0
+margin_top = 103.0
+margin_right = 342.0
+margin_bottom = 259.0
+popup_exclusive = true
+window_title = "Entry Blank"
+dialog_text = "Entry is blank, please input a system name."
+dialog_autowrap = true
+
+[connection signal="confirmed" from="Dialog/NewEntry" to="." method="_on_NewEntry_confirmed"]
+[connection signal="text_changed" from="Dialog/NewEntry/VBoxContainer/NewEntryName" to="." method="_on_NewEntryName_text_changed"]

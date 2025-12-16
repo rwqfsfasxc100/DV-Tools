@@ -29,8 +29,8 @@ func _ready():
 	if not reset_node:
 		return
 	tab.connect("file_load_changed",self,"set_enabled")
-	
-	
+	tab.connect("update_value_to",self,"update_display")
+	reset_node.connect("reset",self,"set_value")
 	input_class = input_node.get_class()
 	connect("value_updated",tab,"value_updated")
 	match input_class:
@@ -79,3 +79,25 @@ func get_tab(p:Node = self):
 
 func set_value(val):
 	emit_signal("value_updated",setting,val)
+
+func update_display(dict):
+	var value
+	if setting in dict:
+		value = dict[setting]
+	else:
+		value = reset_node.default
+	match input_class:
+		"LineEdit":
+			input_node.text = value
+		"SpinBox":
+			input_node.value = value
+		"CheckButton":
+			input_node.pressed = value
+		"ColorPickerButton":
+			input_node.color = value
+	if slider_node:
+		slider_node.value = value
+	if option_node:
+		pass
+	
+		
