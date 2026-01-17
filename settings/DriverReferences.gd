@@ -29,17 +29,18 @@ func _files_selected(paths):
 	Settings.set_value("drivers","current_dir",dg.current_dir)
 	add_nodes(paths)
 func add_nodes(paths):
-	for f in paths:
-		if file.file_exists(f):
-			if not f in driver_references:
-				driver_references.append(f)
-				var display = file_display.instance()
-				display.file_path = f
-				display.connect("delete",self,"removing_reference")
-				display_container.add_child(display)
-				Settings.set_value("drivers","references",driver_references)
-		else:
-			removing_reference(f)
+	if paths:
+		for f in paths:
+			if file.file_exists(f):
+				if not f in driver_references:
+					driver_references.append(f)
+					var display = file_display.instance()
+					display.file_path = f
+					display.connect("delete",self,"removing_reference")
+					display_container.add_child(display)
+					Settings.set_value("drivers","references",driver_references)
+			else:
+				removing_reference(f)
 
 func removing_reference(path):
 	if path in driver_references:
