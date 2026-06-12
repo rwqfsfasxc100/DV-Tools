@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://modules/manifests/inputboxes/IntBox.gd" type="Script" id=1]
+
+[node name="IntBox" type="HBoxContainer"]
+margin_right = 1014.0
+margin_bottom = 38.0
+script = ExtResource( 1 )
+default = ""
+
+[node name="Label" type="Label" parent="."]
+margin_top = 12.0
+margin_right = 505.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 509.0
+margin_right = 1014.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Panel"]
+margin_right = 505.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+align = 2

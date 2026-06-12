@@ -1,0 +1,377 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=1]
+[ext_resource path="res://modules/manifests/ManifestTab.gd" type="Script" id=2]
+[ext_resource path="res://modules/manifests/ManifestVersionController.gd" type="Script" id=3]
+[ext_resource path="res://modules/manifests/MVBox.gd" type="Script" id=4]
+[ext_resource path="res://modules/manifests/inputboxes/StringBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://modules/manifests/inputboxes/IntBox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://modules/manifests/inputboxes/StringArray.tscn" type="PackedScene" id=7]
+
+[node name="Manifest" type="Tabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 46.0
+margin_right = -10.0
+margin_bottom = -10.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1014.0
+margin_bottom = 594.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+margin_right = 1014.0
+margin_bottom = 42.0
+alignment = 1
+
+[node name="ManifestVersion" type="OptionButton" parent="HBoxContainer/HBoxContainer"]
+margin_right = 350.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 350, 0 )
+align = 2
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer/ManifestVersion"]
+margin_right = 10.0
+margin_bottom = 38.0
+text = "Manifest Version:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HBoxContainer"]
+margin_left = 354.0
+margin_right = 672.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+
+[node name="IMPORT" type="Button" parent="HBoxContainer/HBoxContainer"]
+margin_left = 676.0
+margin_right = 844.0
+margin_bottom = 42.0
+text = "Import Manifest"
+
+[node name="EXPORT" type="Button" parent="HBoxContainer/HBoxContainer"]
+margin_left = 848.0
+margin_right = 1014.0
+margin_bottom = 42.0
+text = "Export Manifest"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+margin_top = 46.0
+margin_right = 1014.0
+margin_bottom = 594.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer"]
+margin_right = 1014.0
+margin_bottom = 548.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/HBoxContainer"]
+margin_right = 1006.0
+margin_bottom = 548.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MV1" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+visible = false
+margin_right = 1014.0
+margin_bottom = 374.0
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="ID" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV1" instance=ExtResource( 5 )]
+property_display_name = "Mod ID"
+section_name = "package"
+entry_name = "id"
+default = "examplename.examplemod"
+
+[node name="Name" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV1" instance=ExtResource( 5 )]
+margin_top = 42.0
+margin_bottom = 80.0
+property_display_name = "Mod name"
+section_name = "package"
+entry_name = "name"
+default = "Example Mod"
+
+[node name="Version" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV1" instance=ExtResource( 5 )]
+margin_top = 84.0
+margin_bottom = 122.0
+property_display_name = "Mod version"
+section_name = "package"
+entry_name = "version"
+default = "unknown"
+
+[node name="Description" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV1" instance=ExtResource( 5 )]
+margin_top = 126.0
+margin_bottom = 164.0
+property_display_name = "Mod description"
+section_name = "package"
+entry_name = "description"
+default = "MODMENU_DESCRIPTION_PLACEHOLDER"
+
+[node name="GitHub" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV1" instance=ExtResource( 5 )]
+margin_top = 168.0
+margin_bottom = 206.0
+property_display_name = "GitHub URL"
+section_name = "package"
+entry_name = "github_homepage"
+
+[node name="Discord" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV1" instance=ExtResource( 5 )]
+margin_top = 210.0
+margin_bottom = 248.0
+property_display_name = "Discord URL"
+section_name = "package"
+entry_name = "discord"
+
+[node name="Nexus" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV1" instance=ExtResource( 5 )]
+margin_top = 252.0
+margin_bottom = 290.0
+property_display_name = "Nexus URL"
+section_name = "package"
+entry_name = "nexus"
+
+[node name="Donations" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV1" instance=ExtResource( 5 )]
+margin_top = 294.0
+margin_bottom = 332.0
+property_display_name = "Donations URL"
+section_name = "package"
+entry_name = "donations"
+
+[node name="Wiki" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV1" instance=ExtResource( 5 )]
+margin_top = 336.0
+margin_bottom = 374.0
+property_display_name = "Wiki URL"
+section_name = "package"
+entry_name = "wiki"
+
+[node name="MV2" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+visible = false
+margin_right = 996.0
+margin_bottom = 586.0
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="ID" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_right = 996.0
+property_display_name = "Mod ID"
+section_name = "package"
+entry_name = "id"
+default = "examplename.examplemod"
+
+[node name="Name" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_top = 42.0
+margin_right = 996.0
+margin_bottom = 80.0
+property_display_name = "Mod name"
+section_name = "package"
+entry_name = "name"
+default = "Example Mod"
+
+[node name="Description" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_top = 84.0
+margin_right = 996.0
+margin_bottom = 122.0
+property_display_name = "Mod description"
+section_name = "package"
+entry_name = "description"
+default = "HEVLIB_DESCRIPTION_PLACEHOLDER"
+
+[node name="Author" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_top = 126.0
+margin_right = 996.0
+margin_bottom = 164.0
+property_display_name = "Mod author"
+section_name = "package"
+entry_name = "author"
+default = "Unknown"
+
+[node name="Credits" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 7 )]
+margin_top = 168.0
+margin_right = 996.0
+margin_bottom = 208.0
+property_display_name = "Mod credits"
+section_name = "package"
+entry_name = "credits"
+
+[node name="VerMajor" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 6 )]
+margin_top = 212.0
+margin_right = 996.0
+margin_bottom = 250.0
+property_display_name = "Version major"
+section_name = "package"
+entry_name = "version_major"
+default = 1
+
+[node name="VerMinor" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 6 )]
+margin_top = 254.0
+margin_right = 996.0
+margin_bottom = 292.0
+property_display_name = "Version minor"
+section_name = "package"
+entry_name = "version_minor"
+default = 0
+
+[node name="VerBugfix" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 6 )]
+margin_top = 296.0
+margin_right = 996.0
+margin_bottom = 334.0
+property_display_name = "Version bugfix"
+section_name = "package"
+entry_name = "version_bugfix"
+default = 0
+
+[node name="VerMeta" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_top = 338.0
+margin_right = 996.0
+margin_bottom = 376.0
+property_display_name = "Version metadata"
+section_name = "package"
+entry_name = "version_metadata"
+
+[node name="GitHub" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_top = 380.0
+margin_right = 996.0
+margin_bottom = 418.0
+property_display_name = "GitHub URL"
+section_name = "package"
+entry_name = "github"
+
+[node name="Discord" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_top = 422.0
+margin_right = 996.0
+margin_bottom = 460.0
+property_display_name = "Discord URL"
+section_name = "package"
+entry_name = "discord"
+
+[node name="Nexus" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_top = 464.0
+margin_right = 996.0
+margin_bottom = 502.0
+property_display_name = "Nexus URL"
+section_name = "package"
+entry_name = "nexus"
+
+[node name="Donations" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_top = 506.0
+margin_right = 996.0
+margin_bottom = 544.0
+property_display_name = "Donations URL"
+section_name = "package"
+entry_name = "donations"
+
+[node name="Donations2" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV2" instance=ExtResource( 5 )]
+margin_top = 548.0
+margin_right = 996.0
+margin_bottom = 586.0
+property_display_name = "Wiki URL"
+section_name = "package"
+entry_name = "wiki"
+
+[node name="MV21" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+margin_right = 1006.0
+margin_bottom = 392.0
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="ID" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21" instance=ExtResource( 5 )]
+margin_right = 1006.0
+property_display_name = "Mod ID"
+section_name = "mod_information"
+entry_name = "id"
+default = "examplename.examplemod"
+
+[node name="Name" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21" instance=ExtResource( 5 )]
+margin_top = 42.0
+margin_right = 1006.0
+margin_bottom = 80.0
+property_display_name = "Mod Name"
+section_name = "mod_information"
+entry_name = "name"
+default = "Example Mod"
+
+[node name="Description" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21" instance=ExtResource( 5 )]
+margin_top = 84.0
+margin_right = 1006.0
+margin_bottom = 122.0
+property_display_name = "Mod Description"
+section_name = "mod_information"
+entry_name = "description"
+default = "HEVLIB_DESCRIPTION_PLACEHOLDER"
+
+[node name="Author" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21" instance=ExtResource( 5 )]
+margin_top = 126.0
+margin_right = 1006.0
+margin_bottom = 164.0
+property_display_name = "Mod Author"
+section_name = "mod_information"
+entry_name = "author"
+default = "Unknown"
+
+[node name="Credits" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21" instance=ExtResource( 7 )]
+margin_top = 168.0
+margin_right = 1006.0
+margin_bottom = 208.0
+property_display_name = "Mod Credits"
+section_name = "mod_information"
+entry_name = "credits"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21"]
+margin_top = 212.0
+margin_right = 1006.0
+margin_bottom = 216.0
+
+[node name="VerMajor" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21" instance=ExtResource( 6 )]
+margin_top = 220.0
+margin_right = 1006.0
+margin_bottom = 258.0
+property_display_name = "Version Major"
+section_name = "version"
+entry_name = "version_major"
+default = 1
+
+[node name="VerMinor" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21" instance=ExtResource( 6 )]
+margin_top = 262.0
+margin_right = 1006.0
+margin_bottom = 300.0
+property_display_name = "Version Minor"
+section_name = "version"
+entry_name = "version_minor"
+
+[node name="VerBugfix" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21" instance=ExtResource( 6 )]
+margin_top = 304.0
+margin_right = 1006.0
+margin_bottom = 342.0
+property_display_name = "Version Bugfix"
+section_name = "version"
+entry_name = "version_bugfix"
+
+[node name="VerMeta" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21" instance=ExtResource( 5 )]
+margin_top = 346.0
+margin_right = 1006.0
+margin_bottom = 384.0
+property_display_name = "Version Metadata"
+section_name = "version"
+entry_name = "version_metadata"
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV21"]
+margin_top = 388.0
+margin_right = 1006.0
+margin_bottom = 392.0
+
+[node name="MV22" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+margin_top = 396.0
+margin_right = 1006.0
+margin_bottom = 548.0
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 1010.0
+margin_right = 1014.0
+margin_bottom = 548.0
