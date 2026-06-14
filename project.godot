@@ -29,6 +29,7 @@ gdscript/warnings/unused_signal=false
 [display]
 
 window/size/height=650
+window/size/resizable=false
 
 [gui]
 

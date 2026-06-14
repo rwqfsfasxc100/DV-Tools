@@ -7,10 +7,15 @@ margin_right = 1014.0
 margin_bottom = 38.0
 script = ExtResource( 1 )
 
-[node name="Label" type="Label" parent="."]
-margin_top = 12.0
+[node name="TOOLTIP" type="Button" parent="."]
 margin_right = 505.0
-margin_bottom = 26.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+flat = true
+
+[node name="Label" type="Label" parent="TOOLTIP"]
+margin_right = 497.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="Panel" type="Panel" parent="."]

@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://modules/manifests/inputboxes/StringArray.gd" type="Script" id=1]
+[ext_resource path="res://modules/manifests/inputboxes/2.1_old/TagArrayType.gd" type="Script" id=1]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://HevLib/ui/themes/icons/dropdown_arrow.stex"
 
-[node name="StringArray" type="VBoxContainer"]
+[node name="TagArrayBox" type="VBoxContainer"]
 margin_right = 1014.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
@@ -18,21 +18,25 @@ margin_bottom = 40.0
 size_flags_horizontal = 3
 
 [node name="TOOLTIP" type="Button" parent="Box"]
-margin_right = 483.0
+margin_right = 411.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 flat = true
 
 [node name="Label" type="Label" parent="Box/TOOLTIP"]
-margin_left = 16.0
-margin_top = 13.0
-margin_right = 491.0
-margin_bottom = 27.0
+margin_right = 403.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
 clip_text = true
 
+[node name="CheckButton" type="CheckButton" parent="Box"]
+margin_left = 415.0
+margin_right = 555.0
+margin_bottom = 40.0
+text = "Enabled? "
+
 [node name="Button" type="Button" parent="Box"]
-margin_left = 487.0
+margin_left = 559.0
 margin_right = 970.0
 margin_bottom = 40.0
 size_flags_horizontal = 3

@@ -5,7 +5,6 @@ export (String) var property_display_name = ""
 export (String,MULTILINE) var property_description = ""
 
 export (String) var section_name = ""
-export (String) var entry_name = ""
 
 export (Array) var default = Array()
 
@@ -24,7 +23,7 @@ onready var LIST = $List
 
 var toggled = false
 
-export (PackedScene) var array_item = preload("res://modules/manifests/inputboxes/parts/ArrayItem.tscn")
+export (PackedScene) var link_item = preload("res://modules/manifests/inputboxes/parts/LinkItem.tscn")
 
 onready var add_button = Button.new()
 
@@ -56,14 +55,13 @@ func _on_text_changed(how:Array):
 		return
 	if not section_name in mod_box.STATE:
 		mod_box.STATE[section_name] = {}
-	mod_box.STATE[section_name][entry_name] = how
+#	mod_box.STATE[section_name][entry_name] = how
 
 func _on_visibility_changed():
 	if Engine.editor_hint:
 		return
 	if not mod_box:
 		mod_box = get_node_or_null(NodePath(".."))
-	data = mod_box.STATE.get(section_name,{}).get(entry_name,default)
 	update()
 	yield(get_tree(),"idle_frame")
 	LABEL.rect_size = LABEL.get_parent().rect_size
@@ -74,13 +72,14 @@ func _draw():
 	if LIST:
 		LIST.visible = toggled
 		ICON.rect_rotation = 180 if toggled else 0
-		BUTTON.text = "Array entries: %d" % data.size()
+		BUTTON.text = "URL entries: %d" % data.size()
 
 func _add_confirmed():
 	var txt = ADDEDIT.text
 	if txt and ((not txt in data) if require_unique else true):
 		ADDDIAG.hide()
-		add(txt)
+		add(txt,{})
+
 
 var labelRefs : Array = []
 
@@ -94,26 +93,11 @@ func resort():
 	LIST.move_child(add_button,LIST.get_child_count())
 
 
-func add(how:String):
+func add(this_item_name:String,how:Dictionary):
 	data.append(how)
-	var l = array_item.instance()
-	l.item_name = how
+	var l = link_item.instance()
+	l.item_name = this_item_name
 	labelRefs.append(l)
-	resort()
-
-func move(pos:int,direction:int):
-	var which = data[pos]
-	var label = labelRefs[pos]
-	if direction > 0 and pos < (data.size() - 1):
-		data.remove(pos)
-		data.insert(pos + 1,which)
-		labelRefs.remove(pos)
-		labelRefs.insert(pos + 1,label)
-	elif direction < 0 and pos > 0:
-		data.remove(pos)
-		data.insert(pos - 1,which)
-		labelRefs.remove(pos)
-		labelRefs.insert(pos - 1,label)
 	resort()
 
 func delete(how:int):

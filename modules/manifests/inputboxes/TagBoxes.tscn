@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://modules/manifests/inputboxes/StringArray.gd" type="Script" id=1]
+[ext_resource path="res://modules/manifests/inputboxes/TagBoxes.gd" type="Script" id=1]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://HevLib/ui/themes/icons/dropdown_arrow.stex"
 
-[node name="StringArray" type="VBoxContainer"]
+[node name="TagBoxes" type="VBoxContainer"]
 margin_right = 1014.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
@@ -20,6 +20,9 @@ size_flags_horizontal = 3
 [node name="TOOLTIP" type="Button" parent="Box"]
 margin_right = 483.0
 margin_bottom = 40.0
+hint_tooltip = "
+
+"
 size_flags_horizontal = 3
 flat = true
 
@@ -36,7 +39,7 @@ margin_left = 487.0
 margin_right = 970.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
-text = "Array entries: 0"
+text = "Tag entries: 0"
 
 [node name="TextureRect" type="TextureRect" parent="Box"]
 margin_left = 974.0
@@ -47,22 +50,58 @@ rect_pivot_offset = Vector2( 20, 20 )
 texture = SubResource( 1 )
 
 [node name="AddDiag" type="ConfirmationDialog" parent="Box"]
-margin_left = 614.0
+margin_left = 598.0
 margin_right = 1014.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 400, 100 )
+margin_bottom = 304.0
+rect_min_size = Vector2( 400, 300 )
 popup_exclusive = true
 window_title = "Add item"
 resizable = true
 dialog_hide_on_ok = false
 dialog_autowrap = true
 
-[node name="LineEdit" type="LineEdit" parent="Box/AddDiag"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Box/AddDiag"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 398.0
-margin_bottom = 73.0
+margin_right = 408.0
+margin_bottom = 268.0
+rect_min_size = Vector2( 400, 260 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Box/AddDiag/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 14.0
+text = "Input tag:"
+
+[node name="LineEdit" type="LineEdit" parent="Box/AddDiag/VBoxContainer"]
+margin_top = 18.0
+margin_right = 400.0
+margin_bottom = 83.0
 rect_min_size = Vector2( 390, 65 )
+placeholder_text = "TAG_..."
+
+[node name="TagType" type="OptionButton" parent="Box/AddDiag/VBoxContainer"]
+margin_top = 87.0
+margin_right = 400.0
+margin_bottom = 107.0
+
+[node name="HSeparator" type="HSeparator" parent="Box/AddDiag/VBoxContainer"]
+margin_top = 111.0
+margin_right = 400.0
+margin_bottom = 115.0
+
+[node name="Label" type="Label" parent="Box/AddDiag/VBoxContainer"]
+margin_top = 119.0
+margin_right = 400.0
+margin_bottom = 133.0
+text = "Select HevLib built-in tag:"
+
+[node name="OptionButton" type="OptionButton" parent="Box/AddDiag/VBoxContainer"]
+margin_top = 137.0
+margin_right = 400.0
+margin_bottom = 157.0
+clip_text = true
 
 [node name="List" type="VBoxContainer" parent="."]
 visible = false

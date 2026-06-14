@@ -13,9 +13,9 @@ func _ready():
 	button.connect("pressed",self,"_on_delete")
 	up.connect("pressed",self,"_on_up")
 	down.connect("pressed",self,"_on_down")
-	set_name(item_name)
+	set_this_name(item_name)
 
-func set_name(txt):
+func set_this_name(txt):
 	item_name = txt
 	label.text = txt
 

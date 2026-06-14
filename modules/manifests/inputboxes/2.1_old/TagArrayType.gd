@@ -21,6 +21,7 @@ onready var ICON = $Box/TextureRect
 onready var ADDDIAG = $Box/AddDiag
 onready var ADDEDIT = $Box/AddDiag/LineEdit
 onready var LIST = $List
+onready var TOGGLE = $Box/CheckButton
 
 var toggled = false
 
@@ -38,9 +39,16 @@ func _ready():
 	LIST.add_child(add_button)
 	ADDDIAG.connect("confirmed",self,"_add_confirmed")
 	LABEL.text = property_display_name
+	TOGGLE.connect("toggled",self,"_on_toggle")
 	LABEL.get_parent().hint_tooltip = property_display_name + "\n\n" + property_description
 	connect("visibility_changed",self,"_on_visibility_changed")
 	BUTTON.connect("pressed",self,"_on_button_pressed")
+
+var is_enabled = false
+
+func _on_toggle(how:bool):
+	is_enabled = how
+	_on_text_changed(data)
 
 func _show_add_item():
 	ADDEDIT.text = ""
@@ -54,16 +62,23 @@ func _on_button_pressed():
 func _on_text_changed(how:Array):
 	if Engine.editor_hint:
 		return
-	if not section_name in mod_box.STATE:
-		mod_box.STATE[section_name] = {}
-	mod_box.STATE[section_name][entry_name] = how
+	if is_enabled:
+		if not section_name in mod_box.STATE:
+			mod_box.STATE[section_name] = {}
+		mod_box.STATE[section_name][entry_name] = how
+	else:
+		mod_box.STATE[section_name].erase(entry_name)
 
 func _on_visibility_changed():
 	if Engine.editor_hint:
 		return
 	if not mod_box:
 		mod_box = get_node_or_null(NodePath(".."))
-	data = mod_box.STATE.get(section_name,{}).get(entry_name,default)
+	TOGGLE.pressed = is_enabled
+	if not section_name in mod_box.STATE:
+		mod_box.STATE[section_name] = {}
+	if entry_name in mod_box.STATE[section_name]:
+		data = mod_box.STATE[section_name][entry_name]
 	update()
 	yield(get_tree(),"idle_frame")
 	LABEL.rect_size = LABEL.get_parent().rect_size

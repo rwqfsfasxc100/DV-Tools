@@ -7,42 +7,55 @@ export (String,MULTILINE) var property_description = ""
 export (String) var section_name = ""
 export (String) var entry_name = ""
 
-export (int) var default = 0
-
-var data : int = 0
+export (bool) var default = false
 
 var mod_box = get_node_or_null(NodePath(".."))
 
 onready var LABEL = $TOOLTIP/Label
-onready var SPINBOX = $Panel/SpinBox
+onready var SPINBOX = $Value
+onready var TOGGLE = $Enabled
 
 func _ready():
 	if not default:
-		default = 0
+		default = false
 	LABEL.text = property_display_name
-	SPINBOX.connect("value_changed",self,"_on_text_changed")
+	SPINBOX.connect("pressed",self,"_on_text_changed")
+	TOGGLE.connect("toggled",self,"_on_toggle")
 	LABEL.get_parent().hint_tooltip = property_display_name + "\n\n" + property_description
 	connect("visibility_changed",self,"_on_visibility_changed")
 
-func _on_text_changed(how:float):
+var is_enabled = false
+
+func _on_toggle(how:bool):
+	is_enabled = how
+	_on_text_changed(SPINBOX.pressed)
+
+func _on_text_changed(how:bool):
 	if Engine.editor_hint:
 		return
-	how = int(round(how))
-	if not section_name in mod_box.STATE:
-		mod_box.STATE[section_name] = {}
-	mod_box.STATE[section_name][entry_name] = how
+	if is_enabled:
+		if not section_name in mod_box.STATE:
+			mod_box.STATE[section_name] = {}
+		mod_box.STATE[section_name][entry_name] = how
+	else:
+		mod_box.STATE[section_name].erase(entry_name)
 
 func _on_visibility_changed():
 	if Engine.editor_hint:
 		return
 	if not mod_box:
 		mod_box = get_node_or_null(NodePath(".."))
-	data = mod_box.STATE.get(section_name,{}).get(entry_name,default)
-	SPINBOX.value = data
+	TOGGLE.pressed = is_enabled
+	if not section_name in mod_box.STATE:
+		mod_box.STATE[section_name] = {}
+	if entry_name in mod_box.STATE[section_name]:
+		SPINBOX.pressed = mod_box.STATE[section_name][entry_name]
+	else:
+		SPINBOX.pressed = default
 	yield(get_tree(),"idle_frame")
-	SPINBOX.rect_size.x = $Panel.rect_size.x - 10
 	LABEL.rect_size = LABEL.get_parent().rect_size
 	LABEL.rect_position = Vector2(0,0)
+
 
 func export_as():
 	breakpoint
