@@ -53,8 +53,11 @@ onready var add_button = Button.new()
 func _ready():
 	if not default:
 		default = []
-	for i in TAG_TYPES:
-		ADDTAGTYPE.add_item(i)
+	if Engine.editor_hint:
+		pass
+	else:
+		for i in TAG_TYPES:
+			ADDTAGTYPE.add_item(i)
 	add_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	add_button.text = "Add item"
 	add_button.align = Button.ALIGN_CENTER
