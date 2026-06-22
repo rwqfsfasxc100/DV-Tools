@@ -30,6 +30,7 @@ var toggled = false
 export (PackedScene) var tag_item = preload("res://modules/manifests/inputboxes/parts/TagItem.tscn")
 
 onready var add_button = Button.new()
+onready var hb = HBoxContainer.new()
 
 func _ready():
 	if not default:
@@ -39,17 +40,28 @@ func _ready():
 	else:
 		for i in ManifestConsts.supported_property_types:
 			ADDTAGTYPE.add_item(i)
-	add_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	add_button.text = "Add item"
-	add_button.align = Button.ALIGN_CENTER
-	add_button.connect("pressed",self,"_show_add_item")
-	LIST.add_child(add_button)
-	ADDDIAG.connect("confirmed",self,"_add_confirmed")
-	ADDOPTS.connect("item_selected",self,"_on_preset_selected")
-	LABEL.text = property_display_name
-	LABEL.get_parent().hint_tooltip = property_display_name + "\n\n" + property_description
-	connect("visibility_changed",self,"_on_visibility_changed")
-	BUTTON.connect("pressed",self,"_on_button_pressed")
+	
+		hb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var LB = HBoxContainer.new()
+		var RB = HBoxContainer.new()
+		LB.rect_min_size = Vector2(5,0)
+		RB.rect_min_size = Vector2(5,0)
+		hb.add_child(LB)
+		
+		add_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		add_button.text = "Add item"
+		add_button.align = Button.ALIGN_CENTER
+		add_button.connect("pressed",self,"_show_add_item")
+		hb.add_child(add_button)
+		hb.add_child(RB)
+		LIST.add_child(hb)
+		ADDDIAG.connect("confirmed",self,"_add_confirmed")
+		ADDOPTS.connect("item_selected",self,"_on_preset_selected")
+		LABEL.text = property_display_name
+		LABEL.get_parent().hint_tooltip = property_display_name + "\n\n" + property_description
+		connect("visibility_changed",self,"_on_visibility_changed")
+		BUTTON.connect("pressed",self,"_on_button_pressed")
+		$ConfirmationDialog.connect("confirmed",self,"_doDelete")
 
 var opts_available_presets = ManifestConsts.BUILTIN_TAGS.keys()
 
@@ -118,12 +130,12 @@ var labelRefs : Array = []
 
 func resort():
 	for i in LIST.get_children():
-		if not i == add_button:
+		if not i == hb:
 			LIST.remove_child(i)
 	for i in labelRefs:
 		if is_instance_valid(i) and not i.is_queued_for_deletion():
 			LIST.add_child(i)
-	LIST.move_child(add_button,LIST.get_child_count())
+	LIST.move_child(hb,LIST.get_child_count())
 
 
 func add(this_item_name:String,how:Dictionary,type:String):
@@ -135,6 +147,11 @@ func add(this_item_name:String,how:Dictionary,type:String):
 	resort()
 
 func delete(how:int):
+	var c = $ConfirmationDialog
+	c.window_title = str(how)
+	c.popup_centered()
+func _doDelete():
+	var how = int($ConfirmationDialog.window_title)
 	data.remove(how)
 	var item = labelRefs[how]
 	item.queue_free()

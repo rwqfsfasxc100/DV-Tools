@@ -12,6 +12,14 @@ const property_nodes = {
 	"Transform2D":preload("res://property_editor/property_containers/transform2d.tscn"),
 	"Color":preload("res://property_editor/property_containers/color.tscn"),
 	"Dictionary":preload("res://property_editor/property_containers/dict.tscn"),
+	"Array":preload("res://property_editor/property_containers/array.tscn"),
+	"PoolByteArray":preload("res://property_editor/property_containers/poolbytearray.tscn"),
+	"PoolIntArray":preload("res://property_editor/property_containers/poolintarray.tscn"),
+	"PoolRealArray":preload("res://property_editor/property_containers/poolrealarray.tscn"),
+	"PoolStringArray":preload("res://property_editor/property_containers/poolstringarray.tscn"),
+	"PoolVector2Array":preload("res://property_editor/property_containers/poolvector2array.tscn"),
+	"PoolVector3Array":preload("res://property_editor/property_containers/poolvector3array.tscn"),
+	"PoolColorArray":preload("res://property_editor/property_containers/poolcolorarray.tscn"),
 }
 const supported_property_types = [
 	"null",

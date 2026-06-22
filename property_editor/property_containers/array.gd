@@ -1,77 +1,73 @@
 extends VBoxContainer
 
+export (String,"","byte","int","float","string","Vector2","Vector3","Color") var specific_type = ""
+
 func get_property_value():
-	var value = {}
+	var value = []
 	var string = ""
-	for i in get_list():
-		var val = i.get_property_value()
-		value.merge(val[0])
-		var sv :String= val[1]
-		if sv.begins_with("{") and sv.ends_with("}"):
-			sv = sv.substr(1)
-			sv = sv.substr(0,sv.length() - 1)
-		if string:
-			string += ", " + sv
-		else:
-			string = sv
-	var stv = "{%s}" % string
+	var stv = "[%s]" % string
 	return [value,stv]
 
 func set_property_value(property):
-	if property is Dictionary:
+	if property is Array:
 		for i in LIST:
 			i._do_delete()
 		for i in property:
-			var val = property[i]
-			NEWKEY.set_property_value(i)
-			NEWVAL.set_property_value(val)
-			_add_entry()
-
-var toggle_text = "Dictionary (size %d)"
-
-const dict_container = preload("res://property_editor/parts/dict_container.tscn")
+			_add_entry(i)
 
 onready var TOGGLE = $Toggle/Button
 onready var COLLAPSABLE = $Collapsable
 
-onready var LIST = $Collapsable/List
-
 onready var SIZEBOX = $Collapsable/Info/VBoxContainer/SIZE
 onready var PAGEBOX = $Collapsable/Info/VBoxContainer/PAGE
 
-onready var NEWKEY = $Collapsable/NEW/VBoxContainer/Key/property_editor
-onready var NEWVAL = $Collapsable/NEW/VBoxContainer/Value/property_editor
-onready var ADDNEW = $Collapsable/NEW/VBoxContainer/H/Add
+onready var ADDNEW = $Collapsable/NEW/H/Add
+onready var LIST = $Collapsable/List
+
+const array_container = preload("res://property_editor/parts/array_container.tscn")
+
+func getToggleText():
+	match specific_type:
+		"byte":
+			return "PoolByteArray (size %d)"
+		"int":
+			return "PoolIntArray (size %d)"
+		"float":
+			return "PoolRealArray (size %d)"
+		"string":
+			return "PoolStringArray (size %d)"
+		"Vector2":
+			return "PoolVector2Array (size %d)"
+		"Vector3":
+			return "PoolVector3Array (size %d)"
+		"Color":
+			return "PoolColorArray (size %d)"
+		_:
+			return "Array (size %d)"
 
 func _ready():
 	COLLAPSABLE.visible = false
 	TOGGLE.connect("toggled",self,"_toggle_collapsed")
-	TOGGLE.text = toggle_text % 0
+	TOGGLE.text = getToggleText() % 0
 	ADDNEW.connect("pressed",self,"_add_entry")
 	SIZEBOX.connect("value_changed",self,"_size_value_changed")
 	PAGEBOX.connect("value_changed",self,"_page_value_changed")
+	
 	recalculate()
 
 func _toggle_collapsed(how:bool):
 	if how:TOGGLE.icon = preload("res://property_editor/icons/expanded.svg")
 	else:TOGGLE.icon = preload("res://property_editor/icons/collapsed.svg")
 	COLLAPSABLE.visible = how
-	recalculate()
+	
 
-func _add_entry():
-	var key = NEWKEY.get_property_value()[0]
-	var items = []
-	for i in get_list():
-		items.append(i.get_node("key").get_property_value()[0])
-	if key in items:
-		return
-	var val = NEWVAL.get_property_value()[0]
-	var cv = dict_container.instance()
-	cv.set_property_value(key,val)
-	cv.parent_container = self
-	LIST.add_child(cv)
-	NEWKEY.set_property_value(null)
-	NEWVAL.set_property_value(null)
+func _add_entry(property = null):
+	var ac = array_container.instance()
+	ac.parent_container = self
+	ac.initialize_type = specific_type
+	if property != null:
+		ac.set_property_value(property)
+	LIST.add_child(ac)
 
 const page_size = 20
 var current_page = 0
@@ -90,7 +86,7 @@ func recalculate():
 		for i in objList:
 			i.visible = false
 		var size = objList.size()
-		TOGGLE.text = toggle_text % size
+		TOGGLE.text = getToggleText() % size
 		SIZEBOX.value = size
 		
 		var offset = (current_page * page_size)
@@ -107,7 +103,6 @@ func recalculate():
 		PAGEBOX.value = current_page
 	else:
 		current_page = 0
-
 func _size_value_changed(how:float):
 	how = int(how)
 	var sz = objList.size()
@@ -115,8 +110,6 @@ func _size_value_changed(how:float):
 		if how < sz and sz > 0:
 			objList[sz - 1]._on_delete()
 		elif how > sz:
-			NEWKEY.set_property_value(null)
-			NEWVAL.set_property_value(null)
 			_add_entry()
 	recalculate()
 

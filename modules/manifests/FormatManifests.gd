@@ -236,3 +236,23 @@ static func format(manifest_data : Dictionary,filepath : String):
 				cfg.set_value(section,key,value)
 	cfg.save(filepath)
 	pass
+
+var file = File.new()
+func parse(file_path: String) -> Dictionary:
+		if not file.file_exists(file_path) and not ResourceLoader.exists(file_path):
+			return {}
+		var cfg:ConfigFile = ConfigFile.new()
+		file.open(file_path,File.READ)
+		var txt : String  = file.get_as_text()
+		file.close()
+		cfg.parse(txt)
+		var cfg_sections : Array = cfg.get_sections()
+		var cfg_dictionary : Dictionary = {}
+		for section in cfg_sections:
+			var data : Dictionary = {}
+			var keys : Array = cfg.get_section_keys(section)
+			for key in keys:
+				var item = cfg.get_value(section,key)
+				data.merge({key:item})
+			cfg_dictionary.merge({section:data})
+		return cfg_dictionary

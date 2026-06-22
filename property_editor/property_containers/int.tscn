@@ -18,6 +18,7 @@ margin_bottom = 38.0
 [node name="SpinBox" type="SpinBox" parent="."]
 margin_right = 134.0
 margin_bottom = 38.0
+max_value = 255.0
 rounded = true
 allow_greater = true
 allow_lesser = true

@@ -5,6 +5,7 @@ export (bool) var can_edit_type = true
 export (String,"null","bool","int","float","string","Vector2","Rect2","Vector3","Transform2D","Color","Dictionary","Array","PoolByteArray","PoolIntArray","PoolRealArray","PoolStringArray","PoolVector2Array","PoolVector3Array","PoolColorArray") var property_type = "null"
 
 var init_variable = null
+var byte_init = false
 
 var selected_property_type = "null"
 var property_box = null
@@ -53,6 +54,8 @@ func _change_property_to(idx : int = -1):
 		var node = ManifestConsts.property_nodes[property].instance()
 		property_box = node
 		selected_property_type = property
+		if property == "int":
+			node.bytes = byte_init
 		for i in $box_alignment/property.get_children():
 			i.queue_free()
 		$box_alignment/property.add_child(node)
