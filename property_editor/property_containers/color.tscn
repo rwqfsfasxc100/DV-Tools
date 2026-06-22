@@ -6,6 +6,7 @@
 [node name="color" type="HBoxContainer"]
 margin_right = 58.0
 margin_bottom = 24.0
+rect_min_size = Vector2( 0, 46 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
@@ -48,9 +49,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ColorPicker" type="ColorPicker" parent="AcceptDialog/PanelContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 448.0
-margin_bottom = 601.0
+margin_left = 21.0
+margin_top = 21.0
+margin_right = 464.0
+margin_bottom = 617.0
 color = Color( 0, 0, 0, 1 )
-raw_mode = true

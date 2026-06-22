@@ -14,26 +14,7 @@ var data : Array = Array()
 
 var mod_box = get_node_or_null(NodePath(".."))
 
-const TAG_TYPES = [
-	"bool",
-	"int",
-	"array"
-]
 
-const BUILTIN_TAGS = {
-	"TAG_ALLOW_ACHIEVEMENTS":["bool",false,"Whether the mod would permit achievements.\nNot currently functional in-game."],
-	"TAG_QOL":["bool",false,"Whether the mod adds QOL features."],
-	"TAG_OVERHAUL":["bool",false,"Whether the mod overhauls a part or parts of the game."],
-	"TAG_VISUAL":["bool",false,"Whether the mod makes visual adjustments."],
-	"TAG_FUN":["bool",false,"Whether the mod is more fun than serious."],
-	"TAG_UI":["bool",false,"Whether the mod adds UI elements."],
-	"TAG_ADDS_SHIPS":["array",[],"Names of ships that the mod adds.\nCan use translation strings."],
-	"TAG_ADDS_EQUIPMENT":["array",[],"Names of equipment that the mod adds.\nCan use translation strings."],
-	"TAG_ADDS_GAMEPLAY_MECHANICS":["array",[],"Names of gameplay mechanics that the mod adds.\nCan use translation strings."],
-	"TAG_ADDS_EVENTS":["array",[],"Names of events that the mod adds.\nCan use translation strings."],
-	"TAG_HANDLE_EXTRA_CREW":["int",24,"For ships with very large numbers of crew, prevents derelict dialogue\nbeing broken if the crew count exceeds what the dialogue can handle.\n\nHevLib automatically sets this to 24, so only does anything above that."],
-#	"TAG_USING_HEVLIB_RESEARCH":["array",[],""],
-}
 
 onready var LABEL = $Box/TOOLTIP/Label
 onready var BUTTON = $Box/Button
@@ -56,7 +37,7 @@ func _ready():
 	if Engine.editor_hint:
 		pass
 	else:
-		for i in TAG_TYPES:
+		for i in ManifestConsts.supported_property_types:
 			ADDTAGTYPE.add_item(i)
 	add_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	add_button.text = "Add item"
@@ -70,7 +51,7 @@ func _ready():
 	connect("visibility_changed",self,"_on_visibility_changed")
 	BUTTON.connect("pressed",self,"_on_button_pressed")
 
-var opts_available_presets = BUILTIN_TAGS.keys()
+var opts_available_presets = ManifestConsts.BUILTIN_TAGS.keys()
 
 func _show_add_item():
 	ADDEDIT.text = ""
@@ -85,17 +66,17 @@ func _show_add_item():
 func _on_preset_selected(idx:int):
 	if idx > 0:
 		var optname = opts_available_presets[idx - 1]
-		var opttype = BUILTIN_TAGS[optname][0]
-		var optdesc = BUILTIN_TAGS[optname][2]
-		var optindex = TAG_TYPES.find(opttype)
+		var opttype = ManifestConsts.BUILTIN_TAGS[optname][0]
+		var optdesc = ManifestConsts.BUILTIN_TAGS[optname][2]
+		var optindex = ManifestConsts.supported_property_types.find(opttype)
 		ADDEDIT.text = optname
 		ADDTAGTYPE.select(optindex)
 		ADDOPTS.hint_tooltip = optname + "\n\n" + optdesc
 
 func get_available_options():
-	var available_presets = BUILTIN_TAGS.keys()
+	var available_presets = ManifestConsts.BUILTIN_TAGS.keys()
 	for i in LIST.get_children():
-		if "item_name" in i and i.item_name in BUILTIN_TAGS:
+		if "item_name" in i and i.item_name in ManifestConsts.BUILTIN_TAGS:
 			available_presets.erase(i.item_name)
 	opts_available_presets = available_presets
 
@@ -130,7 +111,7 @@ func _add_confirmed():
 	var txt = ADDEDIT.text
 	if txt and ((not txt in data) if require_unique else true):
 		ADDDIAG.hide()
-		add(txt,{})
+		add(txt,{},ManifestConsts.supported_property_types[ADDTAGTYPE.selected])
 
 
 var labelRefs : Array = []
@@ -145,9 +126,10 @@ func resort():
 	LIST.move_child(add_button,LIST.get_child_count())
 
 
-func add(this_item_name:String,how:Dictionary):
+func add(this_item_name:String,how:Dictionary,type:String):
 	data.append(how)
 	var l = tag_item.instance()
+	l.item_type = type
 	l.item_name = this_item_name
 	labelRefs.append(l)
 	resort()

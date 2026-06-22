@@ -1,42 +1,10 @@
 extends VBoxContainer
 
-export (String,"ALL","null","bool","int","float","string","Vector2","Rect2","Vector3","Transform2D","Color","Dictionary","Array","PoolByteArray","PoolIntArray","PoolRealArray","PoolStringArray","PoolVector2Array","PoolVector3Array","PoolColorArray") var property_type = "ALL"
+export (bool) var can_edit_type = true
 
-const supported_property_types = [
-	"null",
-	"bool",
-	"int",
-	"float",
-	"string",
-	"Vector2",
-	"Rect2",
-	"Vector3",
-	"Transform2D",
-	"Color",
-	"Dictionary",
-	"Array",
-	"PoolByteArray",
-	"PoolIntArray",
-	"PoolRealArray",
-	"PoolStringArray",
-	"PoolVector2Array",
-	"PoolVector3Array",
-	"PoolColorArray",
-]
+export (String,"null","bool","int","float","string","Vector2","Rect2","Vector3","Transform2D","Color","Dictionary","Array","PoolByteArray","PoolIntArray","PoolRealArray","PoolStringArray","PoolVector2Array","PoolVector3Array","PoolColorArray") var property_type = "null"
 
-const property_nodes = {
-	"null":preload("res://property_editor/property_containers/null.tscn"),
-	"bool":preload("res://property_editor/property_containers/bool.tscn"),
-	"int":preload("res://property_editor/property_containers/int.tscn"),
-	"float":preload("res://property_editor/property_containers/float.tscn"),
-	"string":preload("res://property_editor/property_containers/string.tscn"),
-	"Vector2":preload("res://property_editor/property_containers/vec2.tscn"),
-	"Vector3":preload("res://property_editor/property_containers/vec3.tscn"),
-	"Rect2":preload("res://property_editor/property_containers/rect2.tscn"),
-	"Transform2D":preload("res://property_editor/property_containers/transform2d.tscn"),
-	"Color":preload("res://property_editor/property_containers/color.tscn"),
-	"Dictionary":preload("res://property_editor/property_containers/dict.tscn"),
-}
+var init_variable = null
 
 var selected_property_type = "null"
 var property_box = null
@@ -45,42 +13,53 @@ func get_property_value():
 	if property_box and property_box.has_method("get_property_value"):
 		return property_box.get_property_value()
 
+func set_property_value(property):
+	_change_property_to(ManifestConsts.supported_property_types.find(match_property_to_typestring(property)))
+	if property_box:
+		property_box.set_property_value(property)
+
+func clear():
+	_change_property_to(ManifestConsts.supported_property_types.find("null"))
+
+func initialize(how):
+	init_variable = how
+
 onready var edit_button = $box_alignment/EDIT
 onready var type_select_popup = $TypeSelect
 onready var type_selector = $TypeSelect/PanelContainer/OptionButton
 onready var property_container = $box_alignment/property
 
 func _ready():
-	var editable_type = property_type == "ALL"
-	edit_button.visible = editable_type
+	edit_button.visible = can_edit_type
 	edit_button.connect("pressed",self,"_open_property_selector")
 	type_select_popup.connect("confirmed",self,"_change_property_to")
-	
-	
-	
-	
-	if property_type in supported_property_types:
-		pass
-	else:
-		pass
-	
-
+	_change_property_to(ManifestConsts.supported_property_types.find(property_type))
+	if init_variable != null:
+		set_property_value(init_variable)
 
 func _open_property_selector():
 	type_selector.clear()
-	for i in supported_property_types:
+	for i in ManifestConsts.supported_property_types:
 		type_selector.add_item(i)
 	
 	
 	type_select_popup.popup_centered()
 
-func _change_property_to():
-	var idx = type_selector.selected
-	var property = supported_property_types[idx]
-	if property in property_nodes:
-		var node = property_nodes[property].instance()
+func _change_property_to(idx : int = -1):
+	if idx < 0:
+		idx = type_selector.selected
+	var property = ManifestConsts.supported_property_types[idx]
+	if property in ManifestConsts.property_nodes:
+		var node = ManifestConsts.property_nodes[property].instance()
 		property_box = node
 		selected_property_type = property
-		for i in property_container.get_children():
+		for i in $box_alignment/property.get_children():
 			i.queue_free()
-		property_container.add_child(node)
+		$box_alignment/property.add_child(node)
+
+func match_property_to_typestring(property) -> String:
+	var to = typeof(property)
+	if to in ManifestConsts.property_assignment:
+		return ManifestConsts.property_assignment[to] 
+	return "null"
+

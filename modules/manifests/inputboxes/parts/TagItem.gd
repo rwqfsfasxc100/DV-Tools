@@ -2,6 +2,7 @@ extends VBoxContainer
 
 var item_name : String = ""
 var item_dict : Dictionary = {}
+var item_type = "null"
 
 onready var LABEL = $Box/TOOLTIP/TEXTLABEL
 onready var BUTTON = $Box/TOOLTIP
@@ -12,6 +13,11 @@ onready var EDITDIAGLINE = $Box/EditDiag/LineEdit
 onready var DELETE = $Box/DELETE
 
 onready var parent = get_node_or_null(NodePath("../.."))
+
+func _enter_tree():
+	var pe = get_node_or_null("List/property_editor")
+	pe.property_type = item_type
+	pe.can_edit_type = false
 
 func _ready():
 	connect("visibility_changed",self,"_on_visibility_changed")

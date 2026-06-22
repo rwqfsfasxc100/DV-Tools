@@ -6,6 +6,7 @@
 [node name="vec2" type="HBoxContainer"]
 margin_right = 58.0
 margin_bottom = 24.0
+rect_min_size = Vector2( 0, 38 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
@@ -22,9 +23,17 @@ margin_right = 27.0
 margin_bottom = 38.0
 text = "X"
 
-[node name="X" type="LineEdit" parent="."]
+[node name="XBOX" type="MarginContainer" parent="."]
 margin_left = 31.0
 margin_right = 149.0
+margin_bottom = 38.0
+
+[node name="Panel" type="Panel" parent="XBOX"]
+margin_right = 118.0
+margin_bottom = 38.0
+
+[node name="X" type="LineEdit" parent="XBOX"]
+margin_right = 118.0
 margin_bottom = 38.0
 text = "0"
 
@@ -40,8 +49,16 @@ margin_right = 25.0
 margin_bottom = 38.0
 text = "Y"
 
-[node name="Y" type="LineEdit" parent="."]
+[node name="YBOX" type="MarginContainer" parent="."]
 margin_left = 182.0
 margin_right = 300.0
+margin_bottom = 38.0
+
+[node name="Panel" type="Panel" parent="YBOX"]
+margin_right = 118.0
+margin_bottom = 38.0
+
+[node name="Y" type="LineEdit" parent="YBOX"]
+margin_right = 118.0
 margin_bottom = 38.0
 text = "0"

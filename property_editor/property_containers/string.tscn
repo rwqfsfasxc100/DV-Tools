@@ -3,9 +3,10 @@
 [ext_resource path="res://property_editor/property_containers/string.gd" type="Script" id=1]
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=2]
 
-[node name="string" type="HBoxContainer"]
+[node name="string" type="MarginContainer"]
 margin_right = 58.0
 margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
