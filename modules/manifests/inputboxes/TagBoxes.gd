@@ -40,7 +40,7 @@ func _ready():
 	else:
 		for i in ManifestConsts.supported_property_types:
 			ADDTAGTYPE.add_item(i)
-	
+		opts_available_presets = ManifestConsts.BUILTIN_TAGS.keys()
 		hb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var LB = HBoxContainer.new()
 		var RB = HBoxContainer.new()
@@ -63,7 +63,7 @@ func _ready():
 		BUTTON.connect("pressed",self,"_on_button_pressed")
 		$ConfirmationDialog.connect("confirmed",self,"_doDelete")
 
-var opts_available_presets = ManifestConsts.BUILTIN_TAGS.keys()
+var opts_available_presets:Array = []
 
 func _show_add_item():
 	ADDEDIT.text = ""

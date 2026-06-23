@@ -77,3 +77,83 @@ const property_assignment = {
 	TYPE_VECTOR3_ARRAY:"PoolVector3Array",
 	TYPE_COLOR_ARRAY:"PoolColorArray",
 }
+const CONFIG_NAMES = [
+	"bool",
+	"int",
+	"float",
+	"string",
+	"optionbutton",
+	"input",
+	"action"
+]
+
+const CONFIG_TYPES = {
+	"action":{							# Acceptable types: action
+		"name":"ACTION_MISSING_NAME",	# Display name of the config
+		"description":"",				# Description for the config, used as a tooltip
+		"requires_bools":[],			# Boolean configs that must be true for the config to be available. Each string formatted like 'ModName/Section/Entry', e.g. "VelocityPlus/VP_ENCELADUS/enable_achievements". Use ConfigDriver.__truncate_to_setting_entry to help format.
+		"invert_bool_requirement":false,# Invert the requires_bools output to have all of them negative to permit this config. 
+		"script_path":"",				# Filepath for the script that the action button uses
+		"button_label":"",				# String that the action button displays. Can be a translation string.
+		"method":"_pressed",			# Method that the button script would be connected to.
+	},
+	"bool":{							# Acceptable types: bool, boolean
+		"name":"BOOL_MISSING_NAME",	# Display name of the config
+		"description":"",				# Description for the config, used as a tooltip
+		"requires_bools":[],			# Boolean configs that must be true for the config to be available. Each string formatted like 'ModName/Section/Entry', e.g. "VelocityPlus/VP_ENCELADUS/enable_achievements". Use ConfigDriver.__truncate_to_setting_entry to help format.
+		"invert_bool_requirement":false,# Invert the requires_bools output to have all of them negative to permit this config. 
+		"default":false,				# The default value for the config.
+		"require_restart":false,		# Whether changing this option requires the game to be restarted and prompts the user that it does.
+	},
+	"input":{							# Accepatable types: input
+		"name":"INPUT_MISSING_NAME",	# Display name of the config
+		"description":"",				# Description for the config, used as a tooltip
+		"requires_bools":[],			# Boolean configs that must be true for the config to be available. Each string formatted like 'ModName/Section/Entry', e.g. "VelocityPlus/VP_ENCELADUS/enable_achievements". Use ConfigDriver.__truncate_to_setting_entry to help format.
+		"invert_bool_requirement":false,# Invert the requires_bools output to have all of them negative to permit this config. 
+		"default":[],					# The default value for the config.
+		"always_binds":[],				# Keys that will always be available for this config, and not used.
+	},
+	"int":{								# Accepatable types: int, integer
+		"name":"INTFLOAT_MISSING_NAME",	# Display name of the config
+		"description":"",				# Description for the config, used as a tooltip
+		"requires_bools":[],			# Boolean configs that must be true for the config to be available. Each string formatted like 'ModName/Section/Entry', e.g. "VelocityPlus/VP_ENCELADUS/enable_achievements". Use ConfigDriver.__truncate_to_setting_entry to help format.
+		"invert_bool_requirement":false,# Invert the requires_bools output to have all of them negative to permit this config. 
+		"default":10,					# The default value for the config.
+		"style":"slider",				# The style of the value display. Accepts slider and spinbox
+		"min":0,						# The minimum value of the display.
+		"max":10,						# The maximum value of the display.
+		"step":1,						# How much the value is changed by every tick up or down
+	},
+	"float":{							# Accepatable types: float, real
+		"name":"INTFLOAT_MISSING_NAME",	# Display name of the config
+		"description":"",				# Description for the config, used as a tooltip
+		"requires_bools":[],			# Boolean configs that must be true for the config to be available. Each string formatted like 'ModName/Section/Entry', e.g. "VelocityPlus/VP_ENCELADUS/enable_achievements". Use ConfigDriver.__truncate_to_setting_entry to help format.
+		"invert_bool_requirement":false,# Invert the requires_bools output to have all of them negative to permit this config. 
+		"default":10.0,					# The default value for the config.
+		"style":"slider",				# The style of the value display. Accepts slider and spinbox
+		"min":0.0,						# The minimum value of the display.
+		"max":10.0,						# The maximum value of the display.
+		"step":1.0,						# How much the value is changed by every tick up or down
+	},
+	"string":{							# Acceptable types: string, str
+		"name":"STRING_MISSING_NAME",	# Display name of the config
+		"description":"",				# Description for the config, used as a tooltip
+		"requires_bools":[],			# Boolean configs that must be true for the config to be available. Each string formatted like 'ModName/Section/Entry', e.g. "VelocityPlus/VP_ENCELADUS/enable_achievements". Use ConfigDriver.__truncate_to_setting_entry to help format.
+		"invert_bool_requirement":false,# Invert the requires_bools output to have all of them negative to permit this config. 
+		"default":"",					# The default value for the config.
+		"max_length":0,					# The maximum amount of characters allowed in the box
+		"secret":false,					# Whether the text should be hidden
+		"clear_button":false,			# Whether a button to clear the text should be displayed
+		"placeholder":"HEVLIB_CONFIG_LINEEDIT_PLACEHOLDER",# Placeholder text used when there is nothing in the string.
+	},
+	"optionbutton":{					# Acceptable types: option, optionbutton, option_button
+		"name":"OPTION_MISSING_NAME",	# Display name of the config
+		"description":"",				# Description for the config, used as a tooltip
+		"requires_bools":[],			# Boolean configs that must be true for the config to be available. Each string formatted like 'ModName/Section/Entry', e.g. "VelocityPlus/VP_ENCELADUS/enable_achievements". Use ConfigDriver.__truncate_to_setting_entry to help format.
+		"invert_bool_requirement":false,# Invert the requires_bools output to have all of them negative to permit this config. 
+		"default":"",					# The default value for the config.
+		"options":[],					# The names for the options to display
+		"store_method":"int",			# Whether the index of the selected option or the name of the selected option is stored.
+	}
+}
+

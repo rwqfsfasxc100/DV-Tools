@@ -3,10 +3,7 @@
 [ext_resource path="res://modules/manifests/inputboxes/parts/TagItem.gd" type="Script" id=1]
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=2]
 [ext_resource path="res://property_editor/property_editor.tscn" type="PackedScene" id=3]
-
-[sub_resource type="StreamTexture" id=2]
-flags = 4
-load_path = "res://HevLib/ui/themes/icons/profiles.stex"
+[ext_resource path="res://property_editor/icons/edit.svg" type="Texture" id=4]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -47,13 +44,8 @@ margin_right = 320.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 hint_tooltip = "Edit link name"
-
-[node name="TextureRect" type="TextureRect" parent="Box/EDIT"]
-margin_right = 40.0
-margin_bottom = 40.0
-mouse_filter = 2
-texture = SubResource( 2 )
-expand = true
+icon = ExtResource( 4 )
+expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Box"]
 margin_left = 324.0
