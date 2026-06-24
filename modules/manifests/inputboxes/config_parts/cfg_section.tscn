@@ -29,6 +29,7 @@ margin_left = 8.0
 margin_right = 18.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
+align = 2
 
 [node name="TEXTLABEL" type="Label" parent="Box/TOOLTIP"]
 margin_left = 14.0

@@ -63,7 +63,6 @@ func _on_visibility_changed():
 		return
 	if not mod_box:
 		mod_box = get_node_or_null(NodePath(".."))
-	data = mod_box.STATE.get(section_name,{}).get(entry_name,default)
 	update()
 	yield(get_tree(),"idle_frame")
 	LABEL.rect_size = LABEL.get_parent().rect_size
@@ -125,4 +124,8 @@ func delete(how:int):
 
 
 func export_as():
-	breakpoint
+	var out = []
+	for i in LIST.get_children():
+		if "item_name" in i:
+			out.append(i.item_name)
+	return [section_name,{entry_name:out}]

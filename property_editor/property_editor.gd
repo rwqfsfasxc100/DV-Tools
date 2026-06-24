@@ -4,6 +4,28 @@ export (bool) var can_edit_type = true
 
 export (String,"null","bool","int","float","string","Vector2","Rect2","Vector3","Transform2D","Color","Dictionary","Array","PoolByteArray","PoolIntArray","PoolRealArray","PoolStringArray","PoolVector2Array","PoolVector3Array","PoolColorArray") var property_type = "null"
 
+export (Dictionary) var defaults_for_type = {
+	"null":null,
+	"bool":false,
+	"int":0,
+	"float":0.0,
+	"string":"",
+	"Vector2":Vector2.ZERO,
+	"Rect2":Rect2(),
+	"Vector3":Vector3.ZERO,
+	"Transform2D":Transform2D(),
+	"Color":Color.black,
+	"Dictionary":{},
+	"Array":[],
+	"PoolByteArray":PoolByteArray(),
+	"PoolIntArray":PoolIntArray(),
+	"PoolRealArray":PoolRealArray(),
+	"PoolStringArray":PoolStringArray(),
+	"PoolVector2Array":PoolVector2Array(),
+	"PoolVector3Array":PoolVector3Array(),
+	"PoolColorArray":PoolColorArray(),
+}
+
 var init_variable = null
 var byte_init = false
 
@@ -37,6 +59,7 @@ func _ready():
 	_change_property_to(ManifestConsts.supported_property_types.find(property_type))
 	if init_variable != null:
 		set_property_value(init_variable)
+	$box_alignment/RESET.connect("pressed",self,"reset")
 
 func _open_property_selector():
 	type_selector.clear()
@@ -58,6 +81,8 @@ func _change_property_to(idx : int = -1):
 			node.bytes = byte_init
 		for i in $box_alignment/property.get_children():
 			i.queue_free()
+		if hash(defaults_for_type[property_type]) != hash(ManifestConsts.defaults_for_property_type[property_type]):
+			node.set_property_value(defaults_for_type[property_type])
 		$box_alignment/property.add_child(node)
 
 func match_property_to_typestring(property) -> String:
@@ -65,4 +90,7 @@ func match_property_to_typestring(property) -> String:
 	if to in ManifestConsts.property_assignment:
 		return ManifestConsts.property_assignment[to] 
 	return "null"
+
+func reset():
+	set_property_value(defaults_for_type[property_type])
 

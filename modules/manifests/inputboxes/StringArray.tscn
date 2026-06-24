@@ -20,6 +20,9 @@ size_flags_horizontal = 3
 [node name="TOOLTIP" type="Button" parent="Box"]
 margin_right = 483.0
 margin_bottom = 40.0
+hint_tooltip = "
+
+"
 size_flags_horizontal = 3
 flat = true
 

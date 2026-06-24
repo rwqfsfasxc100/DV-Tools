@@ -79,3 +79,6 @@ func _on_name_change():
 func _on_delete():
 	if parent:
 		parent.delete(get_position_in_parent())
+
+func export_as():
+	return {item_name:{"type":item_type.to_lower(),"value":$List/property_editor.get_property_value()[0]}}

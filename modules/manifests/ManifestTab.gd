@@ -26,14 +26,12 @@ func select_mv(idx:int):
 		i.visible = false
 	manifest_loaders[idx].visible = true
 	current_mv = MANIFEST_VERSIONS[idx]
-	
-	
-	pass
 
 func IMPORT():
 	pass
 
 func EXPORT():
-	pass
+	var out = manifest_loaders[MANIFEST_VERSIONS.find(current_mv)].EXPORT()
+	FormatManifests.format(out,"user://mod.manifest")
 
 

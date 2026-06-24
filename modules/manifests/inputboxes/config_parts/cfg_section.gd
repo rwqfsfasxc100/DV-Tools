@@ -36,7 +36,9 @@ func _ready():
 		LB.rect_min_size = Vector2(5,0)
 		RB.rect_min_size = Vector2(5,0)
 		hb.add_child(LB)
-		
+		ADDOPTS.clear()
+		for i in ManifestConsts.CONFIG_NAMES:
+			ADDOPTS.add_item(i)
 		add_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		add_button.text = "Add entry"
 		add_button.align = Button.ALIGN_CENTER
@@ -45,7 +47,6 @@ func _ready():
 		hb.add_child(RB)
 		LIST.add_child(hb)
 		ADDDIAG.connect("confirmed",self,"_add_confirmed")
-		ADDOPTS.connect("item_selected",self,"_on_configtype_selected")
 		LABEL.text = section_name
 		$ConfirmationDialog.connect("confirmed",self,"_doDelete")
 
@@ -59,6 +60,7 @@ func _draw():
 	if ICON:
 		ICON.rect_rotation = 180 if toggled else 0
 		$List.visible = toggled
+		BUTTON.text = "Config entries: %d" % labelRefs.size()
 
 var allow_change = true
 
@@ -94,15 +96,54 @@ func _on_delete():
 		parent.delete(section_name)
 
 func _show_add_item():
+	ADDOPTS.select(0)
 	ADDDIAG.popup_centered()
-	ADDOPTS.clear()
-	for i in ManifestConsts.CONFIG_NAMES:
-		ADDOPTS.add_item(i)
-	
-	
 	ADDEDIT.text = ""
 	ADDEDIT.grab_focus()
-	pass
 
-func _on_configtype_selected(how:int):
-	pass
+var labelRefs = {
+	
+}
+
+func _add_confirmed():
+	var tname = ADDEDIT.text
+	if tname and not tname in labelRefs:
+		var type = ManifestConsts.CONFIG_NAMES[ADDOPTS.selected]
+		var node = ManifestConsts.CONFIG_NODES[type].instance()
+		node.config_name = tname
+		labelRefs[tname] = node
+		LIST.add_child(node)
+		ADDDIAG.hide()
+		resort()
+
+func resort():
+	for i in LIST.get_children():
+		if i != hb:
+			LIST.remove_child(i)
+	for f in labelRefs:
+		var i = labelRefs[f]
+		if is_instance_valid(i) and not i.is_queued_for_deletion():
+			LIST.add_child(i)
+	LIST.move_child(hb,LIST.get_child_count())
+
+func rename(old:String,new:String):
+	var obj = labelRefs[old]
+	labelRefs.erase(old)
+	labelRefs[new] = obj
+
+func delete(how:String):
+	var c = $ConfirmationDialog
+	c.window_title = how
+	c.popup_centered()
+
+func _doDelete():
+	var c = $ConfirmationDialog
+	var how = c.window_title
+	var item = labelRefs[how]
+	item.queue_free()
+	labelRefs.erase(how)
+	resort()
+
+func export_as():
+	
+	return {}

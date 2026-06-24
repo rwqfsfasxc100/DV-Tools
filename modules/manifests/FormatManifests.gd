@@ -4,8 +4,8 @@ const default_version : float = 2.2
 
 const manifest_template = {
 	"mod_information":{
-		"name":null,
-		"id":null,
+		"name":"",
+		"id":"",
 		"description":"",
 		"brief":"",
 		"author":"",
@@ -45,13 +45,28 @@ const manifest_template = {
 	}
 }
 
+const always_save = {
+	"mod_information":{
+		"name":"Example Mod",
+		"id":"example.mod"
+	},
+	"version":{
+		"version_major":1,
+		"version_minor":0,
+		"version_bugfix":0,
+	},
+	"manifest_definitions":{
+		"manifest_version":1.0,
+	},
+}
+
 static func format(manifest_data : Dictionary,filepath : String):
 	var dict_template = manifest_template.duplicate(true)
 	var manifest_version = manifest_data.get("manifest_definitions",{}).get("manifest_version",default_version)
 	match manifest_version:
 		1,1.0:
-			dict_template["mod_information"]["id"] = manifest_data["package"].get("id",null)
-			dict_template["mod_information"]["name"] = manifest_data["package"].get("name",null)
+			dict_template["mod_information"]["id"] = manifest_data["package"].get("id","")
+			dict_template["mod_information"]["name"] = manifest_data["package"].get("name","")
 			var version = manifest_data["package"].get("version","unknown")
 			dict_template["mod_information"]["description"] = manifest_data["package"].get("description","MODMENU_DESCRIPTION_PLACEHOLDER")
 			
@@ -72,8 +87,8 @@ static func format(manifest_data : Dictionary,filepath : String):
 			if wikiURL != "":
 				dict_template["links"].merge({"HEVLIB_WIKI":{"URL":wikiURL}})
 		2,2.0:
-			dict_template["mod_information"]["id"] = manifest_data["package"].get("id",null)
-			dict_template["mod_information"]["name"] = manifest_data["package"].get("name",null)
+			dict_template["mod_information"]["id"] = manifest_data["package"].get("id","")
+			dict_template["mod_information"]["name"] = manifest_data["package"].get("name","")
 			dict_template["version"]["version_major"] = manifest_data["package"].get("version_major",1)
 			dict_template["version"]["version_minor"] = manifest_data["package"].get("version_minor",0)
 			dict_template["version"]["version_bugfix"] = manifest_data["package"].get("version_bugfix",0)
@@ -104,8 +119,8 @@ static func format(manifest_data : Dictionary,filepath : String):
 		2.1:
 			# information
 			if "mod_information" in manifest_data:
-				dict_template["mod_information"]["id"] = String(manifest_data["mod_information"].get("id",null))
-				dict_template["mod_information"]["name"] = String(manifest_data["mod_information"].get("name",null))
+				dict_template["mod_information"]["id"] = String(manifest_data["mod_information"].get("id",""))
+				dict_template["mod_information"]["name"] = String(manifest_data["mod_information"].get("name",""))
 				dict_template["mod_information"]["description"] = String(manifest_data["mod_information"].get("description","HEVLIB_DESCRIPTION_PLACEHOLDER"))
 				dict_template["mod_information"]["author"] = String(manifest_data["mod_information"].get("author","Unknown"))
 				dict_template["mod_information"]["credits"] = PoolStringArray(manifest_data["mod_information"].get("credits",[]))
@@ -183,7 +198,7 @@ static func format(manifest_data : Dictionary,filepath : String):
 				dict_template["manifest_definitions"]["complementary_mod_ids"] = PoolStringArray(manifest_data["manifest_definitions"].get("complementary_mod_ids",[]))
 		2.2:
 			if "mod_information" in manifest_data:
-				dict_template["mod_information"]["id"] = String(manifest_data["mod_information"].get("id",null))
+				dict_template["mod_information"]["id"] = String(manifest_data["mod_information"].get("id",""))
 				dict_template["mod_information"]["name"] = String(manifest_data["mod_information"].get("name",""))
 				dict_template["mod_information"]["description"] = String(manifest_data["mod_information"].get("description","HEVLIB_DESCRIPTION_PLACEHOLDER"))
 				dict_template["mod_information"]["brief"] = String(manifest_data["mod_information"].get("brief",""))
@@ -226,33 +241,38 @@ static func format(manifest_data : Dictionary,filepath : String):
 			if "configs" in manifest_data:
 				var configs = manifest_data["configs"]
 				dict_template["configs"].merge(configs)
+	
 	var cfg = ConfigFile.new()
 	for section in dict_template:
 		var data = {}
 		var keys = dict_template[section]
+		var always = always_save.get(section,{})
 		for key in keys:
 			var value = keys[key]
-			if value:
-				cfg.set_value(section,key,value)
+			if (value != null):
+				if (not key in manifest_template[section]) or (hash(value) != hash(manifest_template[section][key])):
+					cfg.set_value(section,key,value)
+				elif key in always:
+					cfg.set_value(section,key,always[key])
 	cfg.save(filepath)
 	pass
 
 var file = File.new()
 func parse(file_path: String) -> Dictionary:
-		if not file.file_exists(file_path) and not ResourceLoader.exists(file_path):
-			return {}
-		var cfg:ConfigFile = ConfigFile.new()
-		file.open(file_path,File.READ)
-		var txt : String  = file.get_as_text()
-		file.close()
-		cfg.parse(txt)
-		var cfg_sections : Array = cfg.get_sections()
-		var cfg_dictionary : Dictionary = {}
-		for section in cfg_sections:
-			var data : Dictionary = {}
-			var keys : Array = cfg.get_section_keys(section)
-			for key in keys:
-				var item = cfg.get_value(section,key)
-				data.merge({key:item})
-			cfg_dictionary.merge({section:data})
-		return cfg_dictionary
+	if not file.file_exists(file_path) and not ResourceLoader.exists(file_path):
+		return {}
+	var cfg:ConfigFile = ConfigFile.new()
+	file.open(file_path,File.READ)
+	var txt : String  = file.get_as_text()
+	file.close()
+	cfg.parse(txt)
+	var cfg_sections : Array = cfg.get_sections()
+	var cfg_dictionary : Dictionary = {}
+	for section in cfg_sections:
+		var data : Dictionary = {}
+		var keys : Array = cfg.get_section_keys(section)
+		for key in keys:
+			var item = cfg.get_value(section,key)
+			data.merge({key:item})
+		cfg_dictionary.merge({section:data})
+	return cfg_dictionary

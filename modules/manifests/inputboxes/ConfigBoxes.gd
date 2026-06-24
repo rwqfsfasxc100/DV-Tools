@@ -127,4 +127,8 @@ func rename(old:String,new:String):
 	labelRefs[new] = obj
 
 func export_as():
-	breakpoint
+	var out = {}
+	for i in LIST.get_children():
+		if i.has_method("export_as"):
+			out.merge(i.export_as)
+	return [section_name,out]

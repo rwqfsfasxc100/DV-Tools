@@ -118,4 +118,8 @@ func delete(how:int):
 
 
 func export_as():
-	breakpoint
+	var out = {}
+	for i in LIST.get_children():
+		if "item_name" in i and "item_dict" in i:
+			out[i.item_name] = i.item_dict
+	return [section_name,out]
