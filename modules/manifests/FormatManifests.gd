@@ -240,15 +240,14 @@ static func format(manifest_data : Dictionary,filepath : String):
 				
 			if "configs" in manifest_data:
 				var configs = manifest_data["configs"]
-				dict_template["configs"].merge(configs)
+				for cfg in configs:
+					dict_template["configs"][cfg] = configs[cfg]
 	
 	var cfg = ConfigFile.new()
 	for section in dict_template:
-		var data = {}
-		var keys = dict_template[section]
 		var always = always_save.get(section,{})
-		for key in keys:
-			var value = keys[key]
+		for key in dict_template[section]:
+			var value = dict_template[section][key]
 			if (value != null):
 				if (not key in manifest_template[section]) or (hash(value) != hash(manifest_template[section][key])):
 					cfg.set_value(section,key,value)

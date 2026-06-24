@@ -10,6 +10,7 @@ onready var EDITDIAGLINE = $Box/EditDiag/LineEdit
 onready var DELETE = $Box/DELETE
 onready var COLLAPSIBLE = $Collapsible
 
+var config_type = "action"
 var config_name = ""
 onready var parent = get_node_or_null(NodePath("../.."))
 func _ready():

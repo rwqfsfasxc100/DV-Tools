@@ -5,12 +5,20 @@ export (String,"","byte","int","float","string","Vector2","Vector3","Color") var
 func get_property_value():
 	var value = []
 	var string = ""
+	for i in $Collapsable/List.get_children():
+		if i.has_method("get_property_value"):
+			var ov = i.get_property_value()
+			value.append(ov[0])
+			if string:
+				string += ", " + ov[1]
+			else:
+				string = ov[1]
 	var stv = "[%s]" % string
 	return [value,stv]
 
 func set_property_value(property):
-	if property is Array:
-		for i in LIST:
+	if is_array_type(property):
+		for i in $Collapsable/List.get_children():
 			i._do_delete()
 		for i in property:
 			_add_entry(i)
@@ -44,6 +52,32 @@ func getToggleText():
 			return "PoolColorArray (size %d)"
 		_:
 			return "Array (size %d)"
+
+func is_array_type(property) -> bool:
+	if property is Array:
+		return true
+	if property is PoolByteArray:
+		specific_type = "byte"
+		return true
+	if property is PoolColorArray:
+		specific_type = "Color"
+		return true
+	if property is PoolIntArray:
+		specific_type = "int"
+		return true
+	if property is PoolRealArray:
+		specific_type = "float"
+		return true
+	if property is PoolStringArray:
+		specific_type = "string"
+		return true
+	if property is PoolVector2Array:
+		specific_type = "Vector2"
+		return true
+	if property is PoolVector3Array:
+		specific_type = "Vector3"
+		return true
+	return false
 
 func _ready():
 	COLLAPSABLE.visible = false
@@ -81,14 +115,13 @@ func get_list():
 
 var objList = []
 func recalculate():
+	objList = get_list()
+	var size = objList.size()
+	TOGGLE.text = getToggleText() % size
 	if LIST.is_visible_in_tree():
-		objList = get_list()
 		for i in objList:
 			i.visible = false
-		var size = objList.size()
-		TOGGLE.text = getToggleText() % size
 		SIZEBOX.value = size
-		
 		var offset = (current_page * page_size)
 		var max_pages = int(ceil(float(size)/float(page_size))) - 1
 		if size > page_size:

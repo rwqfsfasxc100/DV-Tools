@@ -45,9 +45,9 @@ func set_this_name(txt:Dictionary,vn:String):
 	item_name = vn
 	allow_change = false
 	LABEL.text = vn
-	URL_EDIT = txt.get("URL","")
-	ICON_EDIT = txt.get("ICON","")
-	TOOLTIP_EDIT = txt.get("TOOLTIP","")
+	URL_EDIT.text = txt.get("URL","")
+	ICON_EDIT.text = txt.get("ICON","")
+	TOOLTIP_EDIT.text = txt.get("TOOLTIP","")
 	allow_change = true
 
 func _on_url_changed(text: String):

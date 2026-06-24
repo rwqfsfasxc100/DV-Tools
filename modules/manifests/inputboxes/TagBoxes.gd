@@ -165,3 +165,20 @@ func export_as():
 		if i.has_method("export_as"):
 			out.merge(i.export_as())
 	return [section_name,out]
+
+func import_as(STATE):
+	if section_name in STATE:
+		var sv = STATE[section_name]
+		labelRefs.clear()
+		for i in LIST.get_children():
+			if "item_name" in i:
+				i.queue_free()
+		
+		var kv = sv.keys()
+		for i in range(kv.size()):
+			var vname = kv[i]
+			var entry = sv[vname]
+			add(vname,{},entry.type)
+			var ref = labelRefs[i]
+			ref.import_as(entry.value)
+	update()

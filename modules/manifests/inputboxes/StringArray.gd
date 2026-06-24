@@ -129,3 +129,16 @@ func export_as():
 		if "item_name" in i:
 			out.append(i.item_name)
 	return [section_name,{entry_name:out}]
+
+func import_as(STATE):
+	if section_name in STATE:
+		for i in labelRefs:
+			i.queue_free()
+		labelRefs.clear()
+		var sv = STATE[section_name]
+		if entry_name in sv:
+			var entry = sv[entry_name]
+			if entry is Array or entry is PoolStringArray:
+				for i in entry:
+					add(str(i))
+	update()

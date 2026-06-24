@@ -13,24 +13,24 @@ rect_min_size = Vector2( 5, 0 )
 
 [node name="value" parent="." instance=ExtResource( 2 )]
 margin_left = 9.0
-margin_right = 49.0
+margin_right = 89.0
 margin_bottom = 36.0
 
 [node name="VSeparator" type="VSeparator" parent="."]
-margin_left = 53.0
-margin_right = 57.0
+margin_left = 93.0
+margin_right = 97.0
 margin_bottom = 36.0
 
 [node name="DELETE" type="Button" parent="."]
 self_modulate = Color( 1, 0, 0, 1 )
-margin_left = 61.0
-margin_right = 81.0
+margin_left = 101.0
+margin_right = 121.0
 margin_bottom = 36.0
 text = "X"
 
 [node name="RBAR" type="HBoxContainer" parent="."]
-margin_left = 85.0
-margin_right = 90.0
+margin_left = 125.0
+margin_right = 130.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 5, 0 )
 

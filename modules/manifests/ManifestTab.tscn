@@ -65,6 +65,26 @@ margin_right = 1014.0
 margin_bottom = 42.0
 text = "Export Manifest"
 
+[node name="ImportDiag" type="FileDialog" parent="HBoxContainer/HBoxContainer"]
+margin_right = 460.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 800, 600 )
+window_title = "Open a File"
+mode_overrides_title = false
+mode = 0
+access = 2
+filters = PoolStringArray( "mod.manifest ; Mod Manifest Files" )
+show_hidden_files = true
+
+[node name="ExportDiag" type="FileDialog" parent="HBoxContainer/HBoxContainer"]
+margin_right = 460.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 800, 600 )
+mode_overrides_title = false
+access = 2
+filters = PoolStringArray( "*.manifest ; Mod Manifest Files" )
+show_hidden_files = true
+
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
 margin_top = 46.0
 margin_right = 1014.0
@@ -657,7 +677,7 @@ property_display_name = "Mod Brief"
 property_description = "A short description of the mod, intended to display
 below the mod's name in the mod menu list."
 section_name = "mod_information"
-entry_name = "description"
+entry_name = "brief"
 
 [node name="Author" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 5 )]
 margin_top = 202.0
@@ -783,7 +803,7 @@ property_display_name = "Changelog Path"
 property_description = "Path to the changelog file, relative to the manifest's directory. e.g.:
 changelog.txt -> res://Example Mod/changelog.txt"
 section_name = "manifest_definitions"
-entry_name = "manifest_url"
+entry_name = "changelog_path"
 
 [node name="ModletPriority" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 6 )]
 margin_top = 758.0

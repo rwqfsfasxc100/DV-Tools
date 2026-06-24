@@ -145,5 +145,49 @@ func _doDelete():
 	resort()
 
 func export_as():
-	
-	return {}
+	var out = {}
+	for i in $List.get_children():
+		if "config_name" in i and "config_type" in i:
+			var cfgname = i.config_name
+			var config = {}
+			for r in i.COLLAPSIBLE.get_children():
+				var vname = r.name
+				config[vname] = r.get_node(vname).get_property_value()[0]
+			config["type"] = i.config_type
+			out[cfgname] = config
+	return {section_name:out}
+
+func import_as(STATE):
+	if STATE is Dictionary:
+		for i in labelRefs:
+			labelRefs[i].queue_free()
+		labelRefs.clear()
+		
+		for cv in STATE:
+			var config = STATE[cv]
+			if "type" in config:
+				var ct = config.type.to_lower()
+				match ct:
+					"boolean":
+						ct = "bool"
+					"integer":
+						ct = "int"
+					"real":
+						ct = "float"
+					"str":
+						ct = "string"
+					"option","option_button":
+						ct = "optionbutton"
+				
+				var typeIndex = ManifestConsts.CONFIG_NAMES.find(ct)
+				if typeIndex > -1:
+					ADDOPTS.select(typeIndex)
+					ADDEDIT.text = cv
+					_add_confirmed()
+					var ref = labelRefs[cv]
+					for i in ref.get_node("Collapsible").get_children():
+						var iname = i.name
+						if iname in config:
+							var prop = i.get_node(iname)
+							prop.set_property_value(config[iname])
+	update()

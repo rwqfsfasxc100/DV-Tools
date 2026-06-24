@@ -113,11 +113,32 @@ margin_bottom = 64.0
 [node name="Collapsible" type="VBoxContainer" parent="."]
 margin_top = 44.0
 margin_right = 253.0
-margin_bottom = 240.0
+margin_bottom = 280.0
 
-[node name="description" type="HBoxContainer" parent="Collapsible"]
+[node name="name" type="HBoxContainer" parent="Collapsible"]
 margin_right = 253.0
 margin_bottom = 36.0
+
+[node name="DescriptionLabel" parent="Collapsible/name" instance=ExtResource( 4 )]
+margin_right = 124.0
+margin_bottom = 36.0
+hint_tooltip = "The display name for the config.
+Can be a translation string."
+text = "name"
+tooltip = "The display name for the config.
+Can be a translation string."
+
+[node name="name" parent="Collapsible/name" instance=ExtResource( 3 )]
+margin_left = 128.0
+margin_right = 253.0
+margin_bottom = 36.0
+can_edit_type = false
+property_type = "string"
+
+[node name="description" type="HBoxContainer" parent="Collapsible"]
+margin_top = 40.0
+margin_right = 253.0
+margin_bottom = 76.0
 
 [node name="DescriptionLabel" parent="Collapsible/description" instance=ExtResource( 4 )]
 margin_right = 124.0
@@ -136,9 +157,9 @@ can_edit_type = false
 property_type = "string"
 
 [node name="default" type="HBoxContainer" parent="Collapsible"]
-margin_top = 40.0
+margin_top = 80.0
 margin_right = 253.0
-margin_bottom = 76.0
+margin_bottom = 116.0
 
 [node name="DescriptionLabel" parent="Collapsible/default" instance=ExtResource( 4 )]
 margin_right = 124.0
@@ -155,9 +176,9 @@ can_edit_type = false
 property_type = "PoolStringArray"
 
 [node name="always_binds" type="HBoxContainer" parent="Collapsible"]
-margin_top = 80.0
+margin_top = 120.0
 margin_right = 253.0
-margin_bottom = 116.0
+margin_bottom = 156.0
 
 [node name="DescriptionLabel" parent="Collapsible/always_binds" instance=ExtResource( 4 )]
 margin_right = 124.0
@@ -174,9 +195,9 @@ can_edit_type = false
 property_type = "PoolStringArray"
 
 [node name="requires_bools" type="HBoxContainer" parent="Collapsible"]
-margin_top = 120.0
+margin_top = 160.0
 margin_right = 253.0
-margin_bottom = 156.0
+margin_bottom = 196.0
 
 [node name="DescriptionLabel" parent="Collapsible/requires_bools" instance=ExtResource( 4 )]
 margin_right = 124.0
@@ -207,9 +228,9 @@ can_edit_type = false
 property_type = "PoolStringArray"
 
 [node name="invert_bool_requirement" type="HBoxContainer" parent="Collapsible"]
-margin_top = 160.0
+margin_top = 200.0
 margin_right = 253.0
-margin_bottom = 196.0
+margin_bottom = 236.0
 
 [node name="DescriptionLabel" parent="Collapsible/invert_bool_requirement" instance=ExtResource( 4 )]
 margin_right = 169.0

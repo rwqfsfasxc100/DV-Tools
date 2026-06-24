@@ -123,3 +123,26 @@ func export_as():
 		if "item_name" in i and "item_dict" in i:
 			out[i.item_name] = i.item_dict
 	return [section_name,out]
+
+func import_as(STATE):
+	if section_name in STATE:
+		var sv = STATE[section_name]
+		if sv is Dictionary:
+			for i in labelRefs:
+				i.queue_free()
+			labelRefs.clear()
+			var kv = sv.keys()
+			for i in range(kv.size()):
+				var vname = kv[i]
+				var item = sv[vname]
+				add(vname,{})
+				var ref = labelRefs[i]
+				var RI = {}
+				if "URL" in item:
+					RI["URL"] = item["URL"]
+				if "ICON" in item:
+					RI["ICON"] = item["ICON"]
+				if "TOOLTIP" in item:
+					RI["TOOLTIP"] = item["TOOLTIP"]
+				ref.set_this_name(RI,vname)
+	update()

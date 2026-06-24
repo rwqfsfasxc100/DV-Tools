@@ -130,5 +130,19 @@ func export_as():
 	var out = {}
 	for i in LIST.get_children():
 		if i.has_method("export_as"):
-			out.merge(i.export_as)
+			out.merge(i.export_as())
 	return [section_name,out]
+
+func import_as(STATE):
+	if section_name in STATE:
+		var sv = STATE[section_name]
+		if sv is Dictionary:
+			for i in labelRefs:
+				labelRefs[i].queue_free()
+			labelRefs.clear()
+			
+			var kv = sv.keys()
+			for i in kv:
+				add(i)
+				labelRefs[i].import_as(sv[i])
+	update()

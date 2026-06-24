@@ -56,6 +56,10 @@ func _ready():
 	edit_button.visible = can_edit_type
 	edit_button.connect("pressed",self,"_open_property_selector")
 	type_select_popup.connect("confirmed",self,"_change_property_to")
+	var lowType = []
+	for i in ManifestConsts.supported_property_types:
+		lowType.append(i.to_lower())
+	property_type = ManifestConsts.supported_property_types[lowType.find(property_type.to_lower())]
 	_change_property_to(ManifestConsts.supported_property_types.find(property_type))
 	if init_variable != null:
 		set_property_value(init_variable)
@@ -72,6 +76,8 @@ func _open_property_selector():
 func _change_property_to(idx : int = -1):
 	if idx < 0:
 		idx = type_selector.selected
+	if idx < 0:
+		idx = 0
 	var property = ManifestConsts.supported_property_types[idx]
 	if property in ManifestConsts.property_nodes:
 		var node = ManifestConsts.property_nodes[property].instance()
@@ -81,8 +87,9 @@ func _change_property_to(idx : int = -1):
 			node.bytes = byte_init
 		for i in $box_alignment/property.get_children():
 			i.queue_free()
-		if hash(defaults_for_type[property_type]) != hash(ManifestConsts.defaults_for_property_type[property_type]):
-			node.set_property_value(defaults_for_type[property_type])
+		
+#		if hash(defaults_for_type[property_type]) != hash(ManifestConsts.defaults_for_property_type[property_type]):
+		node.set_property_value(defaults_for_type[property_type])
 		$box_alignment/property.add_child(node)
 
 func match_property_to_typestring(property) -> String:
@@ -94,3 +101,6 @@ func match_property_to_typestring(property) -> String:
 func reset():
 	set_property_value(defaults_for_type[property_type])
 
+func _draw():
+	if property_box:
+		property_box.update()

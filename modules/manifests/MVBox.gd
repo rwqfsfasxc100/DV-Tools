@@ -13,3 +13,9 @@ func EXPORT():
 				STATE[d0] = {}
 			STATE[d0].merge(d1)
 	return STATE
+
+func IMPORT(STATE):
+	for i in get_children():
+		if i.has_method("import_as"):
+			i.import_as(STATE)
+	update()

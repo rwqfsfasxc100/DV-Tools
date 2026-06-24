@@ -75,10 +75,6 @@ func _on_visibility_changed():
 	if not mod_box:
 		mod_box = get_node_or_null(NodePath(".."))
 	TOGGLE.pressed = is_enabled
-	if not section_name in mod_box.STATE:
-		mod_box.STATE[section_name] = {}
-	if entry_name in mod_box.STATE[section_name]:
-		data = mod_box.STATE[section_name][entry_name]
 	update()
 	yield(get_tree(),"idle_frame")
 	LABEL.rect_size = LABEL.get_parent().rect_size
@@ -141,3 +137,7 @@ func delete(how:int):
 
 func export_as():
 	breakpoint
+
+func import_as(STATE):
+	breakpoint
+	update()

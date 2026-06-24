@@ -37,6 +37,7 @@ func _draw():
 	if ICON:
 		ICON.rect_rotation = 180 if toggled else 0
 		$List.visible = toggled
+	$List/property_editor.update()
 
 var allow_change = true
 
@@ -67,6 +68,7 @@ func _on_visibility_changed():
 	yield(get_tree(),"idle_frame")
 	LABEL.rect_size = LABEL.get_parent().rect_size
 	LABEL.rect_position = Vector2(0,0)
+	$List/property_editor.update()
 
 func _on_edit_pressed():
 	EDITDIAGLINE.text = item_name
@@ -81,4 +83,9 @@ func _on_delete():
 		parent.delete(get_position_in_parent())
 
 func export_as():
-	return {item_name:{"type":item_type.to_lower(),"value":$List/property_editor.get_property_value()[0]}}
+	var val = $List/property_editor.get_property_value()
+	var v1 = val[0]
+	return {item_name:{"type":item_type.to_lower(),"value":v1}}
+
+func import_as(STATE):
+	$List/property_editor.set_property_value(STATE)

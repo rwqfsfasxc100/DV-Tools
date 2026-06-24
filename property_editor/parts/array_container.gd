@@ -3,7 +3,7 @@ extends HBoxContainer
 func get_property_value():
 	return $value.get_property_value()
 
-func set_property_value(key,value):
+func set_property_value(value):
 	$value.initialize(value)
 
 var parent_container = null

@@ -37,3 +37,12 @@ func _on_visibility_changed():
 
 func export_as():
 	return [section_name,{entry_name:$Panel/LineEdit.text}]
+
+func import_as(STATE):
+	if section_name in STATE:
+		var sv = STATE[section_name]
+		if entry_name in sv:
+			var entry = sv[entry_name]
+			if entry is String:
+				$Panel/LineEdit.text = entry
+	update()

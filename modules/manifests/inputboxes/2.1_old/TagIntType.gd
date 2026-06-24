@@ -19,7 +19,6 @@ func _ready():
 	if not default:
 		default = 0
 	LABEL.text = property_display_name
-	SPINBOX.connect("value_changed",self,"_on_text_changed")
 	TOGGLE.connect("toggled",self,"_on_toggle")
 	LABEL.get_parent().hint_tooltip = property_display_name + "\n\n" + property_description
 	connect("visibility_changed",self,"_on_visibility_changed")
@@ -28,18 +27,7 @@ var is_enabled = false
 
 func _on_toggle(how:bool):
 	is_enabled = how
-	_on_text_changed(SPINBOX.value)
 
-func _on_text_changed(how:float):
-	if Engine.editor_hint:
-		return
-	if is_enabled:
-		how = int(round(how))
-		if not section_name in mod_box.STATE:
-			mod_box.STATE[section_name] = {}
-		mod_box.STATE[section_name][entry_name] = how
-	else:
-		mod_box.STATE[section_name].erase(entry_name)
 
 func _on_visibility_changed():
 	if Engine.editor_hint:
@@ -47,12 +35,7 @@ func _on_visibility_changed():
 	if not mod_box:
 		mod_box = get_node_or_null(NodePath(".."))
 	TOGGLE.pressed = is_enabled
-	if not section_name in mod_box.STATE:
-		mod_box.STATE[section_name] = {}
-	if entry_name in mod_box.STATE[section_name]:
-		SPINBOX.value = mod_box.STATE[section_name][entry_name]
-	else:
-		SPINBOX.value = default
+	SPINBOX.value = default
 	yield(get_tree(),"idle_frame")
 	SPINBOX.rect_size.x = $Panel.rect_size.x - 10
 	LABEL.rect_size = LABEL.get_parent().rect_size
@@ -61,3 +44,7 @@ func _on_visibility_changed():
 
 func export_as():
 	breakpoint
+
+func import_as(STATE):
+	breakpoint
+	update()

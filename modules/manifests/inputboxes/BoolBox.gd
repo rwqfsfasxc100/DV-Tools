@@ -39,3 +39,12 @@ func _on_visibility_changed():
 
 func export_as():
 	return [section_name,{entry_name:SPINBOX.pressed}]
+
+func import_as(STATE):
+	if section_name in STATE:
+		var sv = STATE[section_name]
+		if entry_name in sv:
+			var entry = sv[entry_name]
+			if entry is bool:
+				SPINBOX.pressed = entry
+	update()
