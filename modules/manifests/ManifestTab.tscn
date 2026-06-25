@@ -18,20 +18,19 @@
 [node name="Manifest" type="Tabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 46.0
 margin_right = -10.0
-margin_bottom = -10.0
+margin_bottom = -56.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 1014.0
+margin_right = 1260.0
 margin_bottom = 594.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
-margin_right = 1014.0
+margin_right = 1260.0
 margin_bottom = 42.0
 alignment = 1
 
@@ -49,19 +48,19 @@ text = "Manifest Version:"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HBoxContainer"]
 margin_left = 354.0
-margin_right = 672.0
+margin_right = 918.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 
 [node name="IMPORT" type="Button" parent="HBoxContainer/HBoxContainer"]
-margin_left = 676.0
-margin_right = 844.0
+margin_left = 922.0
+margin_right = 1090.0
 margin_bottom = 42.0
 text = "Import Manifest"
 
 [node name="EXPORT" type="Button" parent="HBoxContainer/HBoxContainer"]
-margin_left = 848.0
-margin_right = 1014.0
+margin_left = 1094.0
+margin_right = 1260.0
 margin_bottom = 42.0
 text = "Export Manifest"
 
@@ -87,19 +86,19 @@ show_hidden_files = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
 margin_top = 46.0
-margin_right = 1014.0
+margin_right = 1260.0
 margin_bottom = 594.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer"]
-margin_right = 1004.0
+margin_right = 1250.0
 margin_bottom = 1206.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/HBoxContainer"]
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 1206.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -628,20 +627,20 @@ section_name = "manifest_definitions"
 entry_name = "complementary_mod_ids"
 
 [node name="MV22" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 1206.0
 size_flags_vertical = 3
 script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 38.0
 text = "MOD INFORMATION"
 align = 1
 
 [node name="ID" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 5 )]
 margin_top = 42.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 78.0
 property_display_name = "Mod ID"
 property_description = "The mod's unique ID. Common convention is (nick)name.modname"
@@ -651,7 +650,7 @@ default = "examplename.examplemod"
 
 [node name="Name" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 5 )]
 margin_top = 82.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 118.0
 property_display_name = "Mod Name"
 property_description = "The mod's display name. Can be a translation string."
@@ -661,7 +660,7 @@ default = "Example Mod"
 
 [node name="Description" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 5 )]
 margin_top = 122.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 158.0
 property_display_name = "Mod Description"
 property_description = "The mod's description text. Can be a translation string."
@@ -671,7 +670,7 @@ default = "HEVLIB_DESCRIPTION_PLACEHOLDER"
 
 [node name="Brief" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 5 )]
 margin_top = 162.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 198.0
 property_display_name = "Mod Brief"
 property_description = "A short description of the mod, intended to display
@@ -681,7 +680,7 @@ entry_name = "brief"
 
 [node name="Author" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 5 )]
 margin_top = 202.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 238.0
 property_display_name = "Mod Author"
 property_description = "The author for the mod. Can be a translation string."
@@ -691,7 +690,7 @@ default = "Unknown"
 
 [node name="Credits" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 7 )]
 margin_top = 242.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 282.0
 property_display_name = "Mod Credits"
 property_description = "Array of strings for lines to be added for additional credits.
@@ -701,19 +700,19 @@ entry_name = "credits"
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 286.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 290.0
 
 [node name="Label2" type="Label" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 294.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 332.0
 text = "VERSION"
 align = 1
 
 [node name="VerMajor" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 6 )]
 margin_top = 336.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 372.0
 property_display_name = "Version Major"
 property_description = "Primary version number."
@@ -723,7 +722,7 @@ default = 1
 
 [node name="VerMinor" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 6 )]
 margin_top = 376.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 412.0
 property_display_name = "Version Minor"
 property_description = "Middle version number."
@@ -732,7 +731,7 @@ entry_name = "version_minor"
 
 [node name="VerBugfix" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 6 )]
 margin_top = 416.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 452.0
 property_display_name = "Version Bugfix"
 property_description = "End version number."
@@ -741,7 +740,7 @@ entry_name = "version_bugfix"
 
 [node name="VerMeta" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 5 )]
 margin_top = 456.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 492.0
 property_display_name = "Version Metadata"
 property_description = "Additional text to be added to the end of the version when displayed.
@@ -751,19 +750,19 @@ entry_name = "version_metadata"
 
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 496.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 500.0
 
 [node name="Label3" type="Label" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 504.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 542.0
 text = "MANIFEST DEFINITIONS"
 align = 1
 
 [node name="DependancyIDs" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 7 )]
 margin_top = 546.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 586.0
 property_display_name = "Dependancy Mod IDs"
 section_name = "manifest_definitions"
@@ -771,7 +770,7 @@ entry_name = "dependancy_mod_ids"
 
 [node name="ConflictingIDs" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 7 )]
 margin_top = 590.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 630.0
 property_display_name = "Conflicting Mod IDs"
 section_name = "manifest_definitions"
@@ -779,7 +778,7 @@ entry_name = "conflicting_mod_ids"
 
 [node name="ComplementaryIDs" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 7 )]
 margin_top = 634.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 674.0
 property_display_name = "Complementary Mod IDs"
 section_name = "manifest_definitions"
@@ -787,7 +786,7 @@ entry_name = "complementary_mod_ids"
 
 [node name="ManifestURL" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 5 )]
 margin_top = 678.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 714.0
 property_display_name = "Manifest URL"
 property_description = "The URL to a raw text copy of the manifest, used for update handling. e.g.:
@@ -797,7 +796,7 @@ entry_name = "manifest_url"
 
 [node name="ChangelogPath" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 5 )]
 margin_top = 718.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 754.0
 property_display_name = "Changelog Path"
 property_description = "Path to the changelog file, relative to the manifest's directory. e.g.:
@@ -807,7 +806,7 @@ entry_name = "changelog_path"
 
 [node name="ModletPriority" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 6 )]
 margin_top = 758.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 794.0
 property_display_name = "Modlet Priority"
 property_description = "The modlet load order relative to other modlets.
@@ -818,19 +817,19 @@ entry_name = "modlet_priority"
 
 [node name="HSeparator3" type="HSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 798.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 802.0
 
 [node name="Label4" type="Label" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 806.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 844.0
 text = "LINKS"
 align = 1
 
 [node name="Links" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 11 )]
 margin_top = 848.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 888.0
 property_display_name = "Links"
 property_description = "Contains all information regarding links.
@@ -839,19 +838,19 @@ section_name = "links"
 
 [node name="HSeparator4" type="HSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 892.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 896.0
 
 [node name="Label5" type="Label" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 900.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 938.0
 text = "TAGS"
 align = 1
 
 [node name="TagBoxes" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 12 )]
 margin_top = 942.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 982.0
 property_display_name = "Tags"
 property_description = "Tags that the mod registers under. Tags can be functional if implemented by a mod.
@@ -860,36 +859,36 @@ section_name = "tags"
 
 [node name="HSeparator5" type="HSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 986.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 990.0
 
 [node name="Label6" type="Label" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 994.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 1032.0
 text = "CONFIGS"
 align = 1
 
 [node name="ConfigBoxes" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 13 )]
 margin_top = 1036.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 1076.0
 
 [node name="HSeparator6" type="HSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 1080.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 1084.0
 
 [node name="Label7" type="Label" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22"]
 margin_top = 1088.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 1126.0
 text = "LIBRARY"
 align = 1
 
 [node name="IsLibrary" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 14 )]
 margin_top = 1130.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 1166.0
 property_display_name = "Is Library Mod?"
 property_description = "Whether this mod is considered a library.
@@ -901,7 +900,7 @@ entry_name = "is_library"
 
 [node name="AlwaysDisplay" parent="HBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/MV22" instance=ExtResource( 14 )]
 margin_top = 1170.0
-margin_right = 996.0
+margin_right = 1242.0
 margin_bottom = 1206.0
 property_display_name = "Always Display Library"
 property_description = "If this mod is a library, whether it should be always displayed
@@ -910,6 +909,6 @@ section_name = "library"
 entry_name = "always_display"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/ScrollContainer/HBoxContainer"]
-margin_left = 1000.0
-margin_right = 1004.0
+margin_left = 1246.0
+margin_right = 1250.0
 margin_bottom = 1206.0
